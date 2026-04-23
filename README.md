@@ -1,3 +1,10 @@
+## Contributing
+
+We format our JSX according to the standard Prettier style guide: https://facebook.github.io/jsx/
+
+To contribute, please install **Prettier** and **ESLint**. Both can be easily installed using the VScode extensions tab.
+We use the default configurations in both plugins.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

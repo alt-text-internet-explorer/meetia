@@ -1,15 +1,15 @@
-import Link from "next/link"
 import React from "react"
+import Link from "next/link"
 
-const Home = () => {
+const Review = () => {
   return (
     <div>
       <Link href="/">Home</Link>
       <Link href="/profile">User Profile</Link>
       <Link href="/new-review">New Review</Link>
-      <h1>Home Page</h1>
+      <h1>New Review</h1>
     </div>
   )
 }
 
-export default Home
+export default Review

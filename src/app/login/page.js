@@ -1,12 +1,12 @@
 import React from "react"
 import Link from "next/link"
 
-const Profile = () => {
+const Login = () => {
   return (
     <div>
-      <h1>User Profile</h1>
+      <h1>Login</h1>
     </div>
   )
 }
 
-export default Profile
+export default Login

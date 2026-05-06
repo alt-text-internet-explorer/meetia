@@ -1,20 +1,28 @@
-import mongoose from "mongoose";
+const { configDotenv } = require('dotenv');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const url = process.env.MONGO_URI;
-let connection;
+configDotenv()
+const uri = process.env.MONGODB_URI;
 
-/**
- * Makes a connection to a MongoDB database. If a connection already exists, does nothing
- * Call this function before all api routes
- * @returns {Promise<typeof mongoose>}
- */
-const connectDB = async () => {
-  if (!connection) {
-    // uncomment this line once you have the MONGO_URI set up
-    connection = await mongoose.connect(url);
-    console.log("DATABASE CONNECTED");
-    return connection;
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
   }
-};
+});
 
-export default connectDB;
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);

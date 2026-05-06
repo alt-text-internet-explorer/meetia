@@ -5,6 +5,13 @@ We format our JSX according to the standard Prettier style guide: https://facebo
 To contribute, please install **Prettier** and **ESLint**. Both can be easily installed using the VScode extensions tab.
 We use the default configurations in both plugins.
 
+FOR DATABASE CONNECTIONS:
+
+1. Create an account and log in to Mongo Atlas
+2. Click "generate a connection string"
+3. Create a file called ".env" outside of all folders (in top level Meetia/ folder)
+4. Inside .env, write "MONGODB_URI=["copied connection string"]"
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

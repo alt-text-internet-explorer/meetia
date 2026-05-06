@@ -1,10 +1,11 @@
 import React from "react"
 import Link from "next/link"
+import ReviewForm from "@/components/ReviewForm"
 
 const Review = () => {
   return (
     <div>
-      <h1>New Review</h1>
+      <ReviewForm/>
     </div>
   )
 }

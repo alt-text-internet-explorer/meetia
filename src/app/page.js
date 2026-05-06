@@ -4,9 +4,6 @@ import React from "react"
 const Home = () => {
   return (
     <div>
-      <Link href="/">Home</Link>
-      <Link href="/profile">User Profile</Link>
-      <Link href="/new-review">New Review</Link>
       <h1>Home Page</h1>
     </div>
   )

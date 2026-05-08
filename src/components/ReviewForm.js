@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./ReviewForm.module.css"
+import Dropdown from "./ReviewFormDropdown";
+
 function Form(props){
 
 
@@ -7,27 +9,35 @@ function Form(props){
         <form>
             <div className={styles.form}>
                 <ul className={styles.formcont}>
-                    <ul className = {styles.inputTitle}>
-                        <label htmlFor="title">Media Title </label>
-                        <input
-                        type="text"
-                        name="Title"
-                        id="Title"
-                        //value={review.Title}
-                        //onChange={handleChange}
-                        />  
-                    </ul>
-                    <ul className = {styles.inputBody}>
-                        <label htmlFor="body">Review Body </label>
-                        <input
-                        type="text"
-                        name="Body"
-                        id="Body"
-                        //value={review.Body}
-                        //onChange={handleChange}
-                        />
-                    </ul>
-                <input type="button" value="Submit Review"/>
+                    
+                    <label htmlFor="type">Media Type </label>
+                    <Dropdown/>
+
+                    <label htmlFor="title">Media Title </label>
+                    <input
+                    type="text"
+                    name="Title"
+                    id="Title"
+                    className = {styles.inputTitle}
+                    //value={review.Title}
+                    //onChange={handleChange}
+                    />  
+
+                    <label htmlFor="body">Review Body </label>
+                    <textarea
+                    type="text"
+                    name="Body"
+                    id="Body"
+                    className = {styles.inputBody}
+                    //value={review.Body}
+                    //onChange={handleChange}
+                    />
+                    
+                <input 
+                type="button" 
+                value="Submit Review"
+                className = {styles.button}
+                    />
                 </ul>
             </div>
         </form>

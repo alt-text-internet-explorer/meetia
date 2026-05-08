@@ -25,13 +25,13 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link href="/profile" onClick={() => setIsOpen(false)}>
-            User Profile
+          <Link href="/new-review" onClick={() => setIsOpen(false)}>
+            New Review
           </Link>
         </li>
         <li>
-          <Link href="/new-review" onClick={() => setIsOpen(false)}>
-            New Review
+          <Link href="/profile" onClick={() => setIsOpen(false)}>
+            User Profile
           </Link>
         </li>
         <li>

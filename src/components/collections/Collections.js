@@ -1,12 +1,12 @@
 import Image from "next/image"
-import styles from "@/components/profile/UserProfile.module.css"
+import styles from "@/components/collections/Collections.module.css"
 
 // FIXME - SYCHRONIZE WITH BACKEND INSTEAD
 const collections = [
-  { id: 1, title: "test title", src: "/file.svg", alt: "Collection 1" },
-  { id: 2, title: "test title", src: "/file.svg", alt: "Collection 1" },
-  { id: 3, title: "test title", src: "/file.svg", alt: "Collection 1" },
-  { id: 4, title: "test title", src: "/file.svg", alt: "Collection 1" },
+  { id: 1, title: "Media", src: "/file.svg", alt: "Collection 1" },
+  { id: 2, title: "Media", src: "/file.svg", alt: "Collection 1" },
+  { id: 3, title: "Media", src: "/file.svg", alt: "Collection 1" },
+  { id: 4, title: "Media", src: "/file.svg", alt: "Collection 1" },
 ]
 
 export default function Page() {

@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Image from "next/image"
 import styles from "@/components/profile/UserProfile.module.css"
 
@@ -20,7 +21,7 @@ export default function Page() {
           alt="Picture of the user"
           className={styles.avatar}
         />
-        <h1>Collection Title</h1>
+        <h1>Username Profile</h1>
       </div>
       <div>
         <ul className={styles.collections}>
@@ -34,7 +35,7 @@ export default function Page() {
                 alt="Picture of the collection"
               />
               &emsp;
-              {item.title}
+              <Link href="/collections">{item.title}</Link>
             </li>
           ))}
         </ul>

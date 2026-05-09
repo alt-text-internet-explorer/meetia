@@ -1,10 +1,11 @@
 import React from "react"
 import Link from "next/link"
+import UserProfile from "@/components/profile/UserProfile"
 
 const Profile = () => {
   return (
     <div>
-      <h1>UserProfile</h1>
+      <UserProfile />
     </div>
   )
 }

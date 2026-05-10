@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import styles from "@/components/collections/Collections.module.css"
 
 // FIXME - SYCHRONIZE WITH BACKEND INSTEAD
@@ -28,14 +29,14 @@ export default function Page() {
           {collections.map((item) => (
             <li key={item.id}>
               <Image
+                className={styles.image}
                 key={item.id}
                 src="/file.svg"
                 width={50}
                 height={50}
                 alt="Picture of the collection"
-                className={styles.image}
               />
-              <h2>{item.title}</h2>
+              <Link href="/media"><h2>{item.title}</h2></Link>
             </li>
           ))}
         </ul>

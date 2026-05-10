@@ -1,11 +1,11 @@
 import React from "react"
 import Link from "next/link"
-import UserProfile from "@/components/profile/UserProfile"
+import MediaGallery from "@/components/media/Media"
 
 const Profile = () => {
   return (
     <div>
-      <UserProfile />
+      <MediaGallery />
     </div>
   )
 }

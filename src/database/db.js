@@ -2,7 +2,7 @@ import { configDotenv } from "dotenv";
 import mongoose from "mongoose";
 
 configDotenv()
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI
 
 export async function connectDB() {
   try {

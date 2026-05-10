@@ -4,10 +4,10 @@ import styles from "@/components/profile/UserProfile.module.css"
 
 // FIXME - SYCHRONIZE WITH BACKEND INSTEAD
 const collections = [
-  { id: 1, title: "test title", src: "/file.svg", alt: "Collection 1" },
-  { id: 2, title: "test title", src: "/file.svg", alt: "Collection 1" },
-  { id: 3, title: "test title", src: "/file.svg", alt: "Collection 1" },
-  { id: 4, title: "test title", src: "/file.svg", alt: "Collection 1" },
+  { id: 1, title: "Collection Title", src: "/file.svg", alt: "Collection 1" },
+  { id: 2, title: "Collection Title", src: "/file.svg", alt: "Collection 2" },
+  { id: 3, title: "Collection Title", src: "/file.svg", alt: "Collection 3" },
+  { id: 4, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
 ]
 
 export default function Page() {
@@ -28,13 +28,13 @@ export default function Page() {
           {collections.map((item) => (
             <li key={item.id}>
               <Image
+                className={styles.image}
                 key={item.id}
                 src="/file.svg"
-                width={25}
-                height={25}
+                width={60}
+                height={60}
                 alt="Picture of the collection"
               />
-              &emsp;
               <Link href="/collections">{item.title}</Link>
             </li>
           ))}

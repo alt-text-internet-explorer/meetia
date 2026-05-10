@@ -1,9 +1,76 @@
-import { connectDB } from "./db.js";
 import { User, Review, Collection } from "./userSchema.js";
 
 export async function createUser(userData) {
-
   const user = new User(userData);
 
   return await user.save();
+}
+
+export async function getUserByUsername(uname) {
+    return User.findOne({
+        username: uname
+    });
+}
+
+export async function deleteUserByUsername(uname) {
+    return User.deleteOne({
+        username: uname
+    })
+}
+
+export async function updateUserByUsername(uname, param, updateTo) {
+    return User.updateOne(
+        { username: uname },
+        { [param]: updateTo }
+    );
+}
+
+export async function createReview(reviewData) {
+  const rev = new Review(reviewData);
+
+  return await rev.save();
+}
+
+export async function getReviewById(id) {
+    return Review.findOne({
+        _id: id
+    });
+}
+
+export async function deleteReviewById(id) {
+    return Review.deleteOne({
+        _id: id
+    })
+}
+
+export async function updateReviewById(id, param, updateTo) {
+    return Review.updateOne(
+        { _id: id },
+        { [param]: updateTo }
+    );
+}
+
+export async function createCollection(collectionData) {
+  const col = new Collection(collectionData);
+
+  return await col.save();
+}
+
+export async function getCollectionById(id) {
+    return Collection.findOne({
+        _id: id
+    });
+}
+
+export async function deleteCollectionById(id) {
+    return Collection.deleteOne({
+        _id: id
+    })
+}
+
+export async function addReviewToCollection(id, new_rev) {
+    return Review.updateOne(
+        { _id: id },
+        { $push: { reviews: new_rev } }
+    );
 }

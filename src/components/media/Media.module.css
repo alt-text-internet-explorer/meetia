@@ -33,6 +33,11 @@
   resize: vertical;
 }
 
+.avatar {
+  border-radius: 50%;
+  background: rgb(219, 214, 194);
+}
+
 .image {
   background: rgb(219, 214, 194);
 }

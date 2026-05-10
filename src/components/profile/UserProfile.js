@@ -15,11 +15,11 @@ export default function Page() {
     <main className={styles.page}>
       <div className={styles.profileCard}>
         <Image
+          className={styles.avatar}
           src="/file.svg"
           width={100}
           height={100}
           alt="Picture of the user"
-          className={styles.avatar}
         />
         <h1>Username Profile</h1>
       </div>

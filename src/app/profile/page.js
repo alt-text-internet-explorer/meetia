@@ -4,9 +4,9 @@ import UserProfile from "@/components/profile/UserProfile"
 
 const Profile = () => {
   return (
-    <main>
+    <div>
       <UserProfile />
-    </main>
+    </div>
   )
 }
 

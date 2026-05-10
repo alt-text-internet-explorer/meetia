@@ -7,7 +7,7 @@ const collections = [
   { id: 2, title: "Media", src: "/file.svg", alt: "Collection 1" },
   { id: 3, title: "Media", src: "/file.svg", alt: "Collection 1" },
   { id: 4, title: "Media", src: "/file.svg", alt: "Collection 1" },
-  { id: 4, title: "Media", src: "/file.svg", alt: "Collection 1" },
+  { id: 5, title: "Media", src: "/file.svg", alt: "Collection 1" },
 ]
 
 export default function Page() {

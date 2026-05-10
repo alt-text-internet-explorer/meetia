@@ -7,6 +7,7 @@ const collections = [
   { id: 2, title: "Media", src: "/file.svg", alt: "Collection 1" },
   { id: 3, title: "Media", src: "/file.svg", alt: "Collection 1" },
   { id: 4, title: "Media", src: "/file.svg", alt: "Collection 1" },
+  { id: 4, title: "Media", src: "/file.svg", alt: "Collection 1" },
 ]
 
 export default function Page() {
@@ -18,7 +19,7 @@ export default function Page() {
           width={100}
           height={100}
           alt="Picture of the user"
-          className={styles.avatar}
+          className={styles.image}
         />
         <h1>Collection Title</h1>
       </div>
@@ -29,12 +30,12 @@ export default function Page() {
               <Image
                 key={item.id}
                 src="/file.svg"
-                width={25}
-                height={25}
+                width={50}
+                height={50}
                 alt="Picture of the collection"
+                className={styles.image}
               />
-              &emsp;
-              {item.title}
+              <h2>{item.title}</h2>
             </li>
           ))}
         </ul>

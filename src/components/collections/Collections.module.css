@@ -1,13 +1,16 @@
 .page {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  margin: 24px;
 }
 
 .profileCard {
   display: flex;
   flex-direction: row;
-  padding: 24px;
+  align-items: center;
+  gap: 32px;
+  margin: 16px;
+  margin-bottom: 32px;
 }
 
 .collections {
@@ -16,13 +19,15 @@
 }
 
 .collections li {
-  list-style: none;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  padding: 12px;
-  margin: 10px;
-  background: rgb(219, 214, 194);
+  list-style: none;
+  gap: 32px;
+  margin: 12px;
+  margin-left: 24px;
 }
 
-.avatar {
+.image {
   background: rgb(219, 214, 194);
 }

@@ -33,6 +33,7 @@ export default function Page() {
           className={styles.reviewBox}
           placeholder="Empty review!"
           value={media.description}
+          readOnly
         />
       </div>
     </main>

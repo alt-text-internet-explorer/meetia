@@ -1,58 +1,58 @@
 .form {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .inputTitle {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
 }
 
 .inputBody {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
 }
 
 .formcont {
-    background-color: #b4c098;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 1000px;
+  background-color: #b4c098;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 1000px;
 }
 
 .button {
-    width: 100px;
-    height: 50px;
-    background-color: #86923f;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 8;
+  width: 100px;
+  height: 50px;
+  background-color: #86923f;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8;
 }
-
 
 /* Struggling with the styling of the dropdown menu lol */
 .dropdown {
-    width: 33%;
-    float: left;
-    position: absolute;
+  width: 33%;
+  float: left;
+  position: absolute;
 }
 
-.dropdown a{
-    margin-top: 5px;
-    list-style-type: none;
-    height: 0px;
-    overflow: hidden;
+.dropdown a {
+  margin-top: 5px;
+  list-style-type: none;
+  height: 0px;
+  overflow: hidden;
 
-    position: absolute;  
-    left: 0; top: 100%;  
-    width: 100%;        
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
 
-    transition: height 1s ease;
+  transition: height 1s ease;
 }

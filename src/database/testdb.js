@@ -1,27 +1,26 @@
-import { connectDB } from "./db.js";
+import { connectDB } from "./db.js"
 
-import { User } from "./userSchema.js";
+import { User } from "./userSchema.js"
 
 async function runTest() {
-
-  await connectDB();
+  await connectDB()
 
   const user = new User({
-    username: "alice",
+    username: "another",
     password: "password",
     role: "user",
-    email: "alice@example.com"
-  });
+    email: "alice@example.com",
+  })
 
-  await user.save();
+  await user.save()
 
-  console.log("User inserted");
+  console.log("User inserted")
 
-  const users = await User.find();
+  const users = await User.find()
 
-  console.log(users);
+  console.log(users)
 
-  process.exit(0);
+  process.exit(0)
 }
 
-runTest();
+runTest()

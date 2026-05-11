@@ -5,7 +5,7 @@ import ReviewForm from "@/components/ReviewForm/ReviewForm"
 const Review = () => {
   return (
     <div>
-      <ReviewForm/>
+      <ReviewForm />
     </div>
   )
 }

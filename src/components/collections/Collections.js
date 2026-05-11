@@ -36,7 +36,9 @@ export default function Page() {
                 height={50}
                 alt="Picture of the collection"
               />
-              <Link href="/media"><h2>{item.title}</h2></Link>
+              <Link href="/media">
+                <h2>{item.title}</h2>
+              </Link>
             </li>
           ))}
         </ul>

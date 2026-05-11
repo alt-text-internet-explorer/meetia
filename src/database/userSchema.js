@@ -45,6 +45,12 @@ const ReviewSchema = new Schema({
     trim: true
   },
 
+  type: {
+    type: String,
+    required: true,
+    trim: true
+  },
+
   rating: {
     type: Number,
     min: 1,

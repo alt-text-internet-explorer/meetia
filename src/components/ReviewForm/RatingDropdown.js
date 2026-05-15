@@ -22,7 +22,6 @@ export default function Dropdown() {
       <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleDropdown}>
         {selectedRating}
       </button>
-
       {isOpen && (
         <ul>
           {mediaOptions.map((rating, index) => (

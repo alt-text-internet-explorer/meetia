@@ -5,7 +5,7 @@ import * as styles from "./ReviewForm.module.css"
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const mediaOptions = ["Movie", "Art", "TV Show", "Music"]
+  const mediaOptions = ["Article", "Book", "Movie", "Music", "Podcast", "TV Show"]
   const [selectedMedia, setSelectedMedia] = useState("Select Media Type")
 
   const toggleDropdown = () => {

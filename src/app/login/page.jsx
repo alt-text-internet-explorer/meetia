@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useRedirectIfLoggedIn } from "@/utils/authRedirect"
 
 export default function LoginPage() {
+  useRedirectIfLoggedIn()
   const router = useRouter()
 
   const [creds, setCreds] = useState({

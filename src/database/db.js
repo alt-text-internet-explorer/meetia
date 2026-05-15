@@ -1,16 +1,29 @@
-import { configDotenv } from "dotenv"
 import mongoose from "mongoose"
 
-configDotenv()
 const uri = process.env.MONGODB_URI
 
-export async function connectDB() {
-  try {
-    await mongoose.connect(uri)
+if (!uri) {
+  throw new Error("MONGODB_URI is not defined")
+}
 
-    console.log("MongoDB connected")
-  } catch (e) {
-    // Ensures that the client will close when you finish/error
-    console.error(e)
+let cached = global.mongoose
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null }
+}
+
+export async function connectDB() {
+  if (cached.conn) {
+    return cached.conn
   }
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(uri).then((mongoose) => {
+      console.log("MongoDB connected")
+      return mongoose
+    })
+  }
+
+  cached.conn = await cached.promise
+  return cached.conn
 }

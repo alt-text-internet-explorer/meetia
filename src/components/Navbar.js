@@ -19,25 +19,14 @@ export default function Navbar() {
 
       {/* Links for Desktop View */}
       <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
-        <li>
-          <Link href="/" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link href="/new-review" onClick={() => setIsOpen(false)}>
-            New Review
-          </Link>
-        </li>
-        <li>
-          <Link href="/profile" onClick={() => setIsOpen(false)}>
-            User Profile
-          </Link>
-        </li>
-        <li>
-          <Link href="/login" onClick={() => setIsOpen(false)}>
-            Login
-          </Link>
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/new-review">New Review</Link></li>
+        <li><Link href="/profile">User Profile</Link></li>
+
+        <li className={styles.authGroup}>
+          <Link href="/login">Login</Link>
+          <span>or</span>
+          <Link href="/signup">Sign Up</Link>
         </li>
       </ul>
     </nav>

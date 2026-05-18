@@ -22,6 +22,10 @@ export default function Dropdown() {
       <button type="button" onClick={toggleDropdown}>
         {selectedRating}
       </button>
+      <input
+        type="hidden"
+        name="rating"
+        value={selectedRating}/>
 
       {isOpen && (
         <ul>

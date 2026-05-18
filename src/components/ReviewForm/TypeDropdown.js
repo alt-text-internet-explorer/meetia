@@ -15,18 +15,27 @@ export default function Dropdown() {
   const handleSelect = (media) => {
     setSelectedMedia(media)
     setIsOpen(false)
+    
   }
 
   return (
     <div>
-      <button type="button" onClick={toggleDropdown}>
+      <button type="button" 
+              onClick={toggleDropdown}>
         {selectedMedia}
       </button>
+      <input  
+        type = "hidden" 
+        name = "type"
+        value = {selectedMedia}/>
 
       {isOpen && (
         <ul>
           {mediaOptions.map((media, index) => (
-            <a key={index} href="#" onClick={() => handleSelect(media)}>
+            <a 
+              key={index} 
+              href="#" 
+              onClick={() => handleSelect(media)}>
               {media}
             </a>
           ))}

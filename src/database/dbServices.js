@@ -1,4 +1,6 @@
-import { User, Review, Collection } from "./userSchema.js"
+import User from "./userSchema.js"
+import Review from "./reviewSchema.js"
+import Collection from "./collectionSchema.js"
 
 export async function createUser(userData) {
   const user = new User(userData)

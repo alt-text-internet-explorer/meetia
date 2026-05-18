@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken"
 
+// everything that the jwt signs is passed as a payload
+// the variables from the payload can then be decoded for use.
 export function generateAccessToken(user) {
   return new Promise((resolve, reject) => {
     jwt.sign(

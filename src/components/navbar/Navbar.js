@@ -3,7 +3,6 @@
 import Link from "next/link"
 import styles from "./Navbar.module.css"
 import { useState } from "react"
-import { Logout } from "@/components/logout"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

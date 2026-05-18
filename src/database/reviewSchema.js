@@ -1,0 +1,40 @@
+import mongoose, { Schema } from "mongoose"
+
+const ReviewSchema = new Schema({
+  owner_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  author: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  type: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+  },
+
+  review_text: {
+    type: String,
+  },
+})
+
+const Review = mongoose.models.Review || mongoose.model("Review", ReviewSchema)
+
+export default Review

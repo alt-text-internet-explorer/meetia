@@ -54,6 +54,8 @@
     font-size: 1.5rem;
     display: block;
     cursor: pointer;
+    color: #426589;
+
   }
   .links {
     display: none;

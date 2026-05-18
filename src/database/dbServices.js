@@ -24,6 +24,15 @@ export async function updateUserByUsername(uname, param, updateTo) {
 }
 
 //Social functions
+export async function addFriend(uname, friend_id) {
+    User.updateOne({ username: uname}, { $push: { friends: friend_id } })
+}
+
+export async function getFriends(uname) {
+    User.findOne({
+        username: uname,
+    }).select('friends')
+}
 
 //Review functions
 export async function createReview(reviewData) {

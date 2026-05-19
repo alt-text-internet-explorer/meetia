@@ -1,20 +1,10 @@
 'use client'
 import React from "react"
-import {createReview} from "@/database/dbServices"
 import styles from "./ReviewForm.module.css"
 import TypeDropdown from "./TypeDropdown"
 import RatingDropdown from "./RatingDropdown"
 
 function Form(props) {
-
-  // const [formData, setFormData] = useState({
-  //   type: "",
-  //   title: "",
-  //   author: "",
-  //   rating: "",
-  //   body: ""
-  // });
-
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 

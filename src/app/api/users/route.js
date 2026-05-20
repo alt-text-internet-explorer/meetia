@@ -1,4 +1,4 @@
-import {connectDB} from "@/database/db"
+import { connectDB } from "@/database/db"
 import User from "@/database/userSchema"
 
 // CREATE a user with the parameters that are passed in, catching any server connection or bad requestst that may occur

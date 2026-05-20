@@ -1,11 +1,32 @@
+"use client"
 import React from "react"
 import styles from "./ReviewForm.module.css"
 import TypeDropdown from "./TypeDropdown"
 import RatingDropdown from "./RatingDropdown"
 
 function Form(props) {
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+
+    try {
+      let response = await fetch("/api/submitform", {
+        method: "POST",
+        body: formData,
+      })
+      response = await response.json()
+      alert(
+        `${response.type} ${response.title} ${response.author} ${response.rating} ${response.body}`,
+      )
+    } catch (error) {
+      // Handle error
+      console.error("Error submitting form:", error)
+    }
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className={styles.form}>
         <ul className={styles.formcont}>
           <label htmlFor="type">Media Type </label>
@@ -14,41 +35,33 @@ function Form(props) {
           <label htmlFor="title">Media Title </label>
           <input
             type="text"
-            name="Title"
-            id="Title"
+            name="title"
             className={styles.inputTitle}
-            //value={review.Title}
-            //onChange={handleChange}
+            placeholder="Enter title"
           />
 
           <label htmlFor="author">Author </label>
           <input
             type="text"
-            name="Author"
-            id="Author"
+            name="author"
             className={styles.inputTitle}
-            //value={review.Title}
-            //onChange={handleChange}
+            placeholder="Enter author"
           />
 
           <label htmlFor="type">Rating </label>
           <RatingDropdown />
 
-          <label htmlFor="body">Review Body </label>
+          <label htmlFor="rbody">Review Body </label>
           <textarea
             type="text"
-            name="Body"
-            id="Body"
+            name="rbody"
             className={styles.inputBody}
-            //value={review.Body}
-            //onChange={handleChange}
+            placeholder="Enter review"
           />
 
-          <input
-            type="button"
-            value="Submit Review"
-            className={styles.button}
-          />
+          <button type="submit" className={styles.button}>
+            Submit Review{" "}
+          </button>
         </ul>
       </div>
     </form>

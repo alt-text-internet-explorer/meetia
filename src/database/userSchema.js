@@ -27,12 +27,14 @@ const UserSchema = new Schema({
   },
 
   friends: {
-    type: [{ 
-            type: Schema.Types.ObjectId, 
-            ref: 'User' 
-        }],
-    required: false
-  }
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    required: false,
+  },
 })
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema)

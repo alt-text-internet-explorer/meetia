@@ -8,7 +8,7 @@ import LogoutButton from "./logout/LogoutButton"
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [loggedIn, setLoggedIn] = useState(true)
-  
+
   return (
     <nav className={styles.nav}>
       {/* Website Name, fixed position */}
@@ -21,13 +21,19 @@ export default function Navbar() {
 
       {/* Links for Desktop View */}
       <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/new-review">New Review</Link></li>
-        <li><Link href="/profile">User Profile</Link></li>
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/new-review">New Review</Link>
+        </li>
+        <li>
+          <Link href="/profile">User Profile</Link>
+        </li>
 
         {loggedIn ? (
           <li>
-            <LogoutButton onLogout={() => setLoggedIn(false)}/>
+            <LogoutButton onLogout={() => setLoggedIn(false)} />
           </li>
         ) : (
           <li className={styles.authGroup}>
@@ -37,7 +43,6 @@ export default function Navbar() {
           </li>
         )}
       </ul>
-
     </nav>
   )
 }

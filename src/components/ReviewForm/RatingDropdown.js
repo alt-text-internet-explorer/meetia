@@ -19,13 +19,24 @@ export default function Dropdown() {
 
   return (
     <div className="dropdown">
-      <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleDropdown}>
+      <button
+        className="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        onClick={toggleDropdown}
+      >
         {selectedRating}
       </button>
       {isOpen && (
         <ul>
           {mediaOptions.map((rating, index) => (
-            <a className="dropdown-item" key={index} href="#" onClick={() => handleSelect(rating)}>
+            <a
+              className="dropdown-item"
+              key={index}
+              href="#"
+              onClick={() => handleSelect(rating)}
+            >
               {rating}
             </a>
           ))}

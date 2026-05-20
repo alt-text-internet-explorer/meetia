@@ -19,9 +19,15 @@ export default function Navbar() {
 
       {/* Links for Desktop View */}
       <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/new-review">New Review</Link></li>
-        <li><Link href="/profile">User Profile</Link></li>
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/new-review">New Review</Link>
+        </li>
+        <li>
+          <Link href="/profile">User Profile</Link>
+        </li>
 
         <li className={styles.authGroup}>
           <Link href="/login">Login</Link>

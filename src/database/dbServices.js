@@ -1,4 +1,6 @@
-import { User, Review, Collection } from "./userSchema.js"
+import User from "./userSchema.js"
+import Review from "./reviewSchema.js"
+import Collection from "./collectionSchema.js"
 
 // User functions
 export async function createUser(userData) {
@@ -25,13 +27,13 @@ export async function updateUserByUsername(uname, param, updateTo) {
 
 //Social functions
 export async function addFriend(uname, friend_id) {
-    User.updateOne({ username: uname}, { $push: { friends: friend_id } })
+  User.updateOne({ username: uname }, { $push: { friends: friend_id } })
 }
 
 export async function getFriends(uname) {
-    User.findOne({
-        username: uname,
-    }).select('friends')
+  User.findOne({
+    username: uname,
+  }).select("friends")
 }
 
 //Review functions
@@ -58,7 +60,7 @@ export async function updateReviewById(id, param, updateTo) {
 }
 
 export async function getAllReviews() {
-    return Review.find({})
+  return Review.find({})
 }
 
 //Collection functions

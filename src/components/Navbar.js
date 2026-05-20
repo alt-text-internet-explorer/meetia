@@ -2,11 +2,13 @@
 "use client"
 import Link from "next/link"
 import styles from "./Navbar.module.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import LogoutButton from "./logout/LogoutButton"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-
+  const [loggedIn, setLoggedIn] = useState(true)
+  
   return (
     <nav className={styles.nav}>
       {/* Website Name, fixed position */}
@@ -23,12 +25,19 @@ export default function Navbar() {
         <li><Link href="/new-review">New Review</Link></li>
         <li><Link href="/profile">User Profile</Link></li>
 
-        <li className={styles.authGroup}>
-          <Link href="/login">Login</Link>
-          <span>or</span>
-          <Link href="/signup">Sign Up</Link>
-        </li>
+        {loggedIn ? (
+          <li>
+            <LogoutButton onLogout={() => setLoggedIn(false)}/>
+          </li>
+        ) : (
+          <li className={styles.authGroup}>
+            <Link href="/login">Login</Link>
+            <span>or</span>
+            <Link href="/signup">Sign Up</Link>
+          </li>
+        )}
       </ul>
+
     </nav>
   )
 }

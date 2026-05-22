@@ -1,13 +1,14 @@
-// Navbar.js
 "use client"
+
 import Link from "next/link"
 import styles from "./Navbar.module.css"
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useAuth } from "@/utils/authContext"
 import LogoutButton from "./logout/LogoutButton"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [loggedIn, setLoggedIn] = useState(true)
+  const { loggedIn } = useAuth()
 
   return (
     <nav className={styles.nav}>
@@ -33,7 +34,7 @@ export default function Navbar() {
 
         {loggedIn ? (
           <li>
-            <LogoutButton onLogout={() => setLoggedIn(false)} />
+            <LogoutButton onLogout={() => (loggedIn = false)} />
           </li>
         ) : (
           <li className={styles.authGroup}>

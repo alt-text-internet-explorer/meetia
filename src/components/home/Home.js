@@ -4,16 +4,15 @@ import styles from "@/components/home/Home.module.css"
 import { getAllReviews } from "@/database/dbServices"
 import { connectDB } from "@/database/db"
 
-
 export default async function Page() {
-    let reviews = []
+  let reviews = []
 
-    try {
-        connectDB()
-        reviews = await getAllReviews()
-    } catch (e) {
-        console.log("Error fetching reviews:", e)
-    }
+  try {
+    connectDB()
+    reviews = await getAllReviews()
+  } catch (e) {
+    console.log("Error fetching reviews:", e)
+  }
 
   return (
     <main className={styles.page}>
@@ -23,14 +22,14 @@ export default async function Page() {
             <li key={item._id}>
               <div className={styles.title}>
                 <Link href="/profile">
-                    <Image
+                  <Image
                     className={styles.avatar}
                     key={item._id}
                     src="/file.svg"
                     width={50}
                     height={50}
                     alt="Picture of the collection"
-                    />
+                  />
                 </Link>
                 <h2>{item.title}</h2>
               </div>

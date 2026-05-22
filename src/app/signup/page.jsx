@@ -1,84 +1,12 @@
-"use client"
+import React from "react"
+import SignupForm from "@/components/SignUpForm/SignUpForm"
 
-import { useState } from "react"
-import { useAuth } from "@/utils/authContext"
-
-export default function SignupPage() {
-  const { login } = useAuth()
-
-  const [creds, setCreds] = useState({
-    username: "",
-    email: "",
-    pwd: "",
-  })
-
-  const [message, setMessage] = useState("")
-
-  function handleChange(event) {
-    const { name, value } = event.target
-
-    setCreds({
-      ...creds,
-      [name]: value,
-    })
-  }
-
-  async function submitForm(event) {
-    event.preventDefault()
-
-    const response = await fetch("/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(creds),
-    })
-
-    const payload = await response.json()
-
-    if (response.ok) {
-      setMessage("Signup successful")
-
-      login(payload.token, "/")
-    } else {
-      setMessage(payload.error || "Signup failed")
-    }
-  }
-
+const SignUp = () => {
   return (
-    <form onSubmit={submitForm}>
-      <h1>Sign Up</h1>
-
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        value={creds.username}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="email">Email</label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        value={creds.email}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="pwd">Password</label>
-      <input
-        type="password"
-        name="pwd"
-        id="pwd"
-        value={creds.pwd}
-        onChange={handleChange}
-      />
-
-      <button type="submit">Sign Up</button>
-
-      <p>{message}</p>
-    </form>
+    <div>
+      <SignupForm />
+    </div>
   )
 }
+
+export default SignUp

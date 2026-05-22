@@ -41,13 +41,13 @@ const profileCard = [
 export default function Page() {
   return (
     <main>
-      <div class="row">
+      <div className="row">
 
-        <div class="col">
+        <div className="col">
           1 of 3
         </div>
         
-        <div class="col col-md-5">
+        <div className="col col-md-5">
         {profileCard.map((item) => (
           <div className="card mb-5 shadow-sm rounded-2 overflow-hidden" style={{ maxWidth: "700px"}} key={item.id}>
             
@@ -120,7 +120,7 @@ export default function Page() {
           ))}
         </div>
         
-        <div class="col">
+        <div className="col">
           3 of 3
         </div>
 

@@ -1,12 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { useRedirectIfLoggedIn } from "@/utils/authRedirect"
+import { useAuth } from "@/utils/authContext"
 
 export default function SignupPage() {
-  useRedirectIfLoggedIn()
-  const router = useRouter()
+  const { login } = useAuth()
 
   const [creds, setCreds] = useState({
     username: "",
@@ -36,13 +34,14 @@ export default function SignupPage() {
       body: JSON.stringify(creds),
     })
 
-    if (response.status === 201) {
-      const payload = await response.json()
-      localStorage.setItem("token", payload.token)
+    const payload = await response.json()
+
+    if (response.ok) {
       setMessage("Signup successful")
-      router.push("/")
+
+      login(payload.token, "/")
     } else {
-      setMessage("Signup error")
+      setMessage(payload.error || "Signup failed")
     }
   }
 

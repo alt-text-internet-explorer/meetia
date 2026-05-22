@@ -24,7 +24,7 @@ export function generateAccessToken(user) {
 
 // configured to work with nextjs app router
 export function authenticateUser(req) {
-  const authHeader = req.headers.get["authorization"]
+  const authHeader = req.headers.get("authorization")
   //Getting the 2nd part of the auth header (the token)
   const token = authHeader && authHeader.split(" ")[1]
 

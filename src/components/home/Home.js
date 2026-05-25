@@ -8,7 +8,7 @@ export default async function Page() {
   let reviews = []
 
   try {
-    connectDB()
+    await connectDB()
     reviews = await getAllReviews()
   } catch (e) {
     console.log("Error fetching reviews:", e)

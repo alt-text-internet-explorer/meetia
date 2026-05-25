@@ -28,6 +28,7 @@ export default function Dropdown() {
       >
         {selectedRating}
       </button>
+      <input type="hidden" value={selectedRating} name="rating" />
       {isOpen && (
         <ul>
           {mediaOptions.map((rating, index) => (

@@ -1,3 +1,3 @@
 //global setup
 
-import "./commands"
+//import "./commands"

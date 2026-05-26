@@ -3,7 +3,7 @@
 // visit a page
 describe("Navigation", () => {
   it("should navigate to the User Profile page via navbar", () => {
-    cy.visit("/")
+    cy.visit("http://localhost:3000/")
 
     // find the user page button
     cy.get('a[href*="new-review"]').click()
@@ -16,7 +16,7 @@ describe("Navigation", () => {
 // login
 describe("Login", () => {
   it("logs in successfully", () => {
-    cy.visit("/login")
+    cy.visit("http://localhost:3000/login")
 
     // fillout the form
     cy.get("input[name='username']").type("testuser")
@@ -24,7 +24,7 @@ describe("Login", () => {
 
     cy.get("button[type='submit']").click()
 
-    cy.url().should("eq", "/")
+    cy.url().should("eq", "http://localhost:3000/")
 
     // check for jwt
     cy.window().then((win) => {
@@ -36,7 +36,7 @@ describe("Login", () => {
   })
 
   it("shows an error for invalid credentials", () => {
-    cy.visit("/login")
+    cy.visit("http://localhost:3000/login")
 
     cy.get("input[name='username']").type("wronguser")
 
@@ -53,7 +53,7 @@ describe("Login", () => {
 //logout
 describe("Logout", () => {
   it("logs out successfully", () => {
-    cy.visit("/login")
+    cy.visit("http://localhost:3000/login")
 
     cy.get("input[name='username']").type("testuser")
     cy.get("input[name='pwd']").type("testpassword")

@@ -23,19 +23,10 @@ export default function Navbar() {
       {/* Links for Desktop View */}
       <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
         <li>
-          <Link href="/" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/new-review" onClick={() => setIsOpen(false)}>
-            New Review
-          </Link>
-        </li>
-        <li>
-          <Link href="/profile" onClick={() => setIsOpen(false)}>
-            User Profile
-          </Link>
+          <Link href="/new-review">New Review</Link>
         </li>
 
         {loggedIn ? (

@@ -5,7 +5,14 @@ import * as styles from "./ReviewForm.module.css"
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const mediaOptions = ["Movie", "Art", "TV Show", "Music"]
+  const mediaOptions = [
+    "Article",
+    "Book",
+    "Movie",
+    "Music",
+    "Podcast",
+    "TV Show",
+  ]
   const [selectedMedia, setSelectedMedia] = useState("Select Media Type")
 
   const toggleDropdown = () => {
@@ -18,15 +25,26 @@ export default function Dropdown() {
   }
 
   return (
-    <div>
-      <button type="button" onClick={toggleDropdown}>
+    <div className="dropdown">
+      <button
+        className="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        onClick={toggleDropdown}
+      >
         {selectedMedia}
       </button>
-
+      <input type="hidden" value={selectedMedia} name="type" />
       {isOpen && (
         <ul>
           {mediaOptions.map((media, index) => (
-            <a key={index} href="#" onClick={() => handleSelect(media)}>
+            <a
+              className="dropdown-item"
+              key={index}
+              href="#"
+              onClick={() => handleSelect(media)}
+            >
               {media}
             </a>
           ))}

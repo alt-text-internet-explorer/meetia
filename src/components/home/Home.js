@@ -1,71 +1,46 @@
 import Image from "next/image"
 import Link from "next/link"
 import styles from "@/components/home/Home.module.css"
+import { getAllReviews } from "@/database/dbServices"
+import { connectDB } from "@/database/db"
 
-// FIXME - SYCHRONIZE WITH BACKEND INSTEAD
-const profileCard = [
-  {
-    id: 1,
-    title: "Title",
-    author: "Author",
-    name: "Name",
-    src: "/file.svg",
-    alt: "Collection 1",
-  },
-  {
-    id: 2,
-    title: "Title",
-    author: "Author",
-    name: "Name",
-    src: "/file.svg",
-    alt: "Collection 1",
-  },
-  {
-    id: 3,
-    title: "Title",
-    author: "Author",
-    name: "Name",
-    src: "/file.svg",
-    alt: "Collection 1",
-  },
-  {
-    id: 4,
-    title: "Title",
-    author: "Author",
-    name: "Name",
-    src: "/file.svg",
-    alt: "Collection 1",
-  },
-]
+export default async function Page() {
+  let reviews = []
 
-export default function Page() {
+  try {
+    await connectDB()
+    reviews = await getAllReviews()
+  } catch (e) {
+    console.log("Error fetching reviews:", e)
+  }
+
   return (
     <main className={styles.page}>
-      {profileCard.map((item) => (
-        <div className={styles.profileCard} key={item.id}>
-          <ul className={styles.collections} key={item.id}>
-            <li key={item.id}>
+      {reviews.map((item) => (
+        <div className={styles.profileCard} key={item._id}>
+          <ul className={styles.collections} key={item._id}>
+            <li key={item._id}>
               <div className={styles.title}>
-                <Image
-                  className={styles.avatar}
-                  key={item.id}
-                  src="/file.svg"
-                  width={50}
-                  height={50}
-                  alt="Picture of the collection"
-                />
-                <h2>{item.name}</h2>
+                <Link href="/profile">
+                  <Image
+                    className={styles.avatar}
+                    key={item._id}
+                    src="/file.svg"
+                    width={50}
+                    height={50}
+                    alt="Picture of the collection"
+                  />
+                </Link>
+                <h2>{item.title}</h2>
               </div>
 
               <div className={styles.bottomRow}>
-                <div className={styles.emptyBoxHorizontal}></div>
+                <h2> {item.rating} </h2>
 
                 <div>
                   <h2>{item.title}</h2>
-                  <Link href="/profile">
-                    <h5>{item.author}</h5>
-                  </Link>
-                  <div className={styles.emptyBoxVertical}></div>
+                  <h5>{item.author}</h5>
+                  <p> {item.review_text} </p>
                 </div>
               </div>
             </li>

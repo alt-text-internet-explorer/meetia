@@ -25,6 +25,12 @@
   text-decoration: underline;
 }
 
+.authGroup {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 /* Style of website logo */
 .logo {
   font-size: 1.5rem;
@@ -38,7 +44,7 @@
 
 /* Behavior of navigation bar when screen size is less than 600px
     Website is adaptable for mobile devices */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .nav {
     position: relative;
   }
@@ -48,6 +54,7 @@
     font-size: 1.5rem;
     display: block;
     cursor: pointer;
+    color: #426589;
   }
   .links {
     display: none;
@@ -55,12 +62,22 @@
     align-items: flex-end;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
-    width: auto;
     padding: 1rem 1rem;
   }
   .links.open {
     display: flex;
+  }
+  .links li {
+    width: 200px;
+    border: 1px solid #4a4a4a;
+    padding: 0.5rem 0.5rem;
+    text-align: right;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+  .authGroup {
+    justify-content: right;
   }
 }

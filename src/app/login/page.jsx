@@ -48,31 +48,12 @@ export default function LoginPage() {
     }
   }
 
+const Login = () => {
   return (
-    <form onSubmit={submitForm}>
-      <h1>Login</h1>
-
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        value={creds.username}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="pwd">Password</label>
-      <input
-        type="password"
-        name="pwd"
-        id="pwd"
-        value={creds.pwd}
-        onChange={handleChange}
-      />
-
-      <button type="submit">Log In</button>
-
-      <p>{message}</p>
-    </form>
+    <div>
+      <LoginForm />
+    </div>
   )
 }
+
+export default Login

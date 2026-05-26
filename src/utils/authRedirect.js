@@ -12,10 +12,6 @@ export function useRedirectIfLoggedIn(redirectPath = "/") {
     if (loggedIn) {
       router.replace(redirectPath)
     }
-<<<<<<< HEAD
-  }, [router, redirectPath])
-}
-=======
   }, [loggedIn, router, redirectPath])
 }
->>>>>>> eb59bcc (Add a auth context provider to fix hydration issue)
+

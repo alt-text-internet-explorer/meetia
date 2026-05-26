@@ -1,5 +1,3 @@
-import "./commands"
-
 // cypress uses the baseUrl variable in cypress.config.js
 
 // visit a page

@@ -9,6 +9,11 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
+    environment: .env
+
+    env:
+      TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
     steps:
       - name: Checkout

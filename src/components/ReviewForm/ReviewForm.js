@@ -1,32 +1,32 @@
 "use client"
-import React from "react"
+import React, { useRef } from "react"
 import styles from "./ReviewForm.module.css"
 import TypeDropdown from "./TypeDropdown"
 import RatingDropdown from "./RatingDropdown"
 
 function Form(props) {
+  const formRef = useRef(null)
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
-
     try {
       let response = await fetch("/api/submitform", {
         method: "POST",
         body: formData,
       })
       response = await response.json()
-      alert(
-        `${response.type} ${response.title} ${response.author} ${response.rating} ${response.body}`,
-      )
+      alert(`Review Submitted!`)
     } catch (error) {
       // Handle error
       console.error("Error submitting form:", error)
     }
+    formRef.current.reset() //Clear all inputs
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <div className={styles.form}>
         <ul className={styles.formcont}>
           <label htmlFor="type">Media Type </label>
@@ -38,6 +38,7 @@ function Form(props) {
             name="title"
             className={styles.inputTitle}
             placeholder="Enter title"
+            required
           />
 
           <label htmlFor="author">Author </label>
@@ -46,6 +47,7 @@ function Form(props) {
             name="author"
             className={styles.inputTitle}
             placeholder="Enter author"
+            required
           />
 
           <label htmlFor="type">Rating </label>
@@ -57,6 +59,7 @@ function Form(props) {
             name="rbody"
             className={styles.inputBody}
             placeholder="Enter review"
+            required
           />
 
           <button type="submit" className={styles.button}>

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
+    "component:headless": "cypress run --component"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

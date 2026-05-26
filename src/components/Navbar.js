@@ -3,21 +3,15 @@
 import Link from "next/link"
 import styles from "./Navbar.module.css"
 import { useState } from "react"
-<<<<<<< HEAD
-
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-=======
 import { useAuth } from "@/utils/authContext"
 import LogoutButton from "./logout/LogoutButton"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const { loggedIn } = useAuth()
->>>>>>> eb59bcc (Add a auth context provider to fix hydration issue)
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} data-cy="nav">
       {/* Website Name, fixed position */}
       <div className={styles.logo}>Meetia</div>
 
@@ -43,13 +37,6 @@ export default function Navbar() {
             User Profile
           </Link>
         </li>
-        <li>
-          <Link href="/login" onClick={() => setIsOpen(false)}>
-            Login
-          </Link>
-        </li>
-<<<<<<< HEAD
-=======
 
         {loggedIn ? (
           <li>
@@ -58,11 +45,10 @@ export default function Navbar() {
         ) : (
           <li className={styles.authGroup}>
             <Link href="/login">Login</Link>
-            <span>or</span>
+            <span> or </span>
             <Link href="/signup">Sign Up</Link>
           </li>
         )}
->>>>>>> eb59bcc (Add a auth context provider to fix hydration issue)
       </ul>
     </nav>
   )

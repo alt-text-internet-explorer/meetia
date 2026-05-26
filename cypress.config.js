@@ -1,4 +1,4 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from "cypress"
 
 module.exports = defineConfig({
   allowCypressEnv: false,
@@ -8,4 +8,4 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   },
-});
+})

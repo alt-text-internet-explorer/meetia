@@ -85,3 +85,7 @@ export async function deleteCollectionById(id) {
 export async function addReviewToCollection(id, new_rev) {
   return Review.updateOne({ _id: id }, { $push: { reviews: new_rev } })
 }
+
+export async function getAllCollectionsFromOwner(oid) {
+    return Collection.find({ owner_id: oid })
+}

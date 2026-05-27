@@ -3,63 +3,76 @@ import Link from "next/link"
 import styles from "@/components/collections/Collections.module.css"
 
 // FIXME - SYCHRONIZE WITH BACKEND INSTEAD
-const collections = [
+const collectionsList = [
+  {
+    id: 0,
+    collectionTitle: "Blank!",
+
+    items: [
+      {
+        id: 0,
+        title: "Lorem ipsum Review",
+        src: "/file.svg",
+        alt: "Collection 1",
+        subtitle: "No",
+        summary: "Nothing here",
+      },
+    ],
+  },
   {
     id: 1,
-    title: "Lorem ipsum Review",
-    src: "/file.svg",
-    alt: "Collection 1",
-    subtitle: "5 stars Lorem ipsum!",
-    summary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 2,
-    title: "Media",
-    src: "/file.svg",
-    alt: "Collection 1",
-    subtitle: "Genre",
-    summary: "second summary",
-  },
-  {
-    id: 3,
-    title: "Media",
-    src: "/file.svg",
-    alt: "Collection 1",
-    subtitle: "Genre",
-    summary: "yet another summary1.",
-  },
-  {
-    id: 4,
-    title: "Media",
-    src: "/file.svg",
-    alt: "Collection 1",
-    subtitle: "Genre",
-    summary: "yet another summary2.",
-  },
-  {
-    id: 5,
-    title: "Media",
-    src: "/file.svg",
-    alt: "Collection 1",
-    subtitle: "Genre",
-    summary: "yet another summary3.",
+    collectionTitle: "Title of this test collection!",
+
+    items: [
+      {
+        id: 1,
+        title: "Lorem ipsum Review",
+        src: "/file.svg",
+        alt: "Collection 1",
+        subtitle: "5 stars Lorem ipsum!",
+        summary:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
+      },
+      {
+        id: 2,
+        title: "Title!",
+        src: "/file.svg",
+        alt: "Collection 1",
+        subtitle: "Genre",
+        summary: "General layout of the layout page",
+      },
+      {
+        id: 3,
+        title: "Nothing",
+        src: "/file.svg",
+        alt: "Collection 1",
+        subtitle: "Genre",
+        summary: "Nothing here.",
+      },
+      {
+        id: 4,
+        title: "Lorem ipsum text",
+        src: "/file.svg",
+        alt: "Collection 1",
+        subtitle: "Genre",
+        summary: "no review components",
+      },
+    ],
   },
 ]
 
 export default function Page({ id }) {
-
-  let collection = collectionsList.find((item) => item.id == id);
+  let collection = collectionsList.find((item) => item.id == id)
 
   if (!collection) {
-    collection = collectionsList[0];
+    collection = collectionsList[0]
   }
 
   return (
     <main>
       <div className="container py-4">
         <div
-          className="card card border-0 shadow-sm overflow-hidden p-3"
+          className="card border-0 shadow-sm overflow-hidden p-3"
           style={{ height: "200px" }}
         >
           <div className="d-flex flex-row h-100 align-items-center">
@@ -75,7 +88,7 @@ export default function Page({ id }) {
             </div>
 
             <div className="overflow-y-auto h-100">
-              <h5>Collection</h5>
+              <h5>{collection.collectionTitle}</h5>
               <p
                 className="card-text text-secondary"
                 style={{ fontSize: "0.8rem" }}
@@ -123,7 +136,7 @@ export default function Page({ id }) {
 
       <div className="container py-4">
         <div className="row row-cols-1 g-4">
-          {collections.map((item) => (
+          {collection.items.map((item) => (
             <div className="col" key={item.id}>
               <Link href={`/media/${item.id}`}>
                 <div

@@ -48,11 +48,10 @@ const collections = [
 ]
 
 export default function Page({ id }) {
-
-  let collection = collectionsList.find((item) => item.id == id);
+  let collection = collectionsList.find((item) => item.id == id)
 
   if (!collection) {
-    collection = collectionsList[0];
+    collection = collectionsList[0]
   }
 
   return (

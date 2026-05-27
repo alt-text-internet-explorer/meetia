@@ -1,7 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import styles from "@/components/home/Home.module.css"
-import { getAllReviews, getFriends, getReviewById, getReviewsFromUID } from "@/database/dbServices"
+import {
+  getAllReviews,
+  getFriends,
+  getReviewById,
+  getReviewsFromUID,
+} from "@/database/dbServices"
 import { connectDB } from "@/database/db"
 
 export default async function Page() {
@@ -14,16 +19,16 @@ export default async function Page() {
     await connectDB()
 
     if (loggedIn) {
-        let friend_ids = await getFriends(username)
-        for (let f of friend_ids["friends"]) {
-            let r = await getReviewsFromUID(f)
-            if (r != null && r[0] != undefined) {
-                console.log(r[0])
-                reviews.push(r[0])
-            }
+      let friend_ids = await getFriends(username)
+      for (let f of friend_ids["friends"]) {
+        let r = await getReviewsFromUID(f)
+        if (r != null && r[0] != undefined) {
+          console.log(r[0])
+          reviews.push(r[0])
         }
+      }
     } else {
-        reviews = await getAllReviews()
+      reviews = await getAllReviews()
     }
   } catch (e) {
     console.log("Error fetching reviews:", e)

@@ -64,9 +64,9 @@ export async function getAllReviews() {
 }
 
 export async function getReviewsFromUID(id) {
-    return Review.find({
-        owner_id: id,
-    })
+  return Review.find({
+    owner_id: id,
+  })
 }
 
 //Collection functions

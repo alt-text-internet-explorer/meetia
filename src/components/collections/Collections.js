@@ -48,6 +48,13 @@ const collections = [
 ]
 
 export default function Page({ id }) {
+
+  let collection = collectionsList.find((item) => item.id == id);
+
+  if (!collection) {
+    collection = collectionsList[0];
+  }
+
   return (
     <main>
       <div className="container py-4">

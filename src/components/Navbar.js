@@ -11,7 +11,7 @@ export default function Navbar() {
   const { loggedIn } = useAuth()
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} data-cy="nav">
       {/* Website Name, fixed position */}
       <div className={styles.logo}>Meetia</div>
 
@@ -28,9 +28,6 @@ export default function Navbar() {
         <li>
           <Link href="/new-review">New Review</Link>
         </li>
-        <li>
-          <Link href="/profile">User Profile</Link>
-        </li>
 
         {loggedIn ? (
           <li>
@@ -39,7 +36,7 @@ export default function Navbar() {
         ) : (
           <li className={styles.authGroup}>
             <Link href="/login">Login</Link>
-            <span>or</span>
+            <span> or </span>
             <Link href="/signup">Sign Up</Link>
           </li>
         )}

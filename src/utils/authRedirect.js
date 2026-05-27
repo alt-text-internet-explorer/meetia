@@ -14,3 +14,4 @@ export function useRedirectIfLoggedIn(redirectPath = "/") {
     }
   }, [loggedIn, router, redirectPath])
 }
+

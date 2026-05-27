@@ -11,7 +11,7 @@ const media = {
   alt: "Collection 1",
 }
 
-export default function Page() {
+export default function Page({ id }) {
   return (
     <main className={styles.page}>
       <div className={styles.titleCard}>
@@ -24,7 +24,7 @@ export default function Page() {
         />
         <div>
           <h1>
-            <i>Collection Title</i>
+            <i>Collection Title {id}</i>
           </h1>
           <h1>
             <i>Author</i>

@@ -14,7 +14,7 @@ const collections = [
   { id: 8, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
 ]
 
-export default function Page() {
+export default function Page({ id }) {
   return (
     <main>
     <div className="container py-4">
@@ -52,6 +52,7 @@ export default function Page() {
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {collections.map((item) => (
           <div className="col" key={item.id}>
+            <Link href={`/collections/${item.id}`}>
 
             <div className="card shadow-sm rounded-2 overflow-hidden h-100" style={{ maxWidth: "500px", maxHeight: "200px"}}>
             
@@ -85,6 +86,7 @@ export default function Page() {
               </div>
             </div>
 
+            </Link>
           </div>
           ))}
           </div>

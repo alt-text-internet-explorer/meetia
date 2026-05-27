@@ -2,10 +2,12 @@ import React from "react"
 import Link from "next/link"
 import CollectionsGallery from "@/components/collections/Collections"
 
-const Collections = () => {
+const Collections = async ({ params }) => {
+  const { id } = await params
+
   return (
     <div>
-      <CollectionsGallery />
+      <CollectionsGallery id={id} />
     </div>
   )
 }

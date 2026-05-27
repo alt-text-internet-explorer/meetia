@@ -11,7 +11,7 @@ export default function Navbar() {
   const { loggedIn } = useAuth()
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} data-cy="nav">
       {/* Website Name, fixed position */}
       <div className={styles.logo}>Meetia</div>
 
@@ -21,29 +21,36 @@ export default function Navbar() {
       </button>
 
       {/* Links for Desktop View */}
-      <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/new-review">New Review</Link>
-        </li>
-        <li>
-          <Link href="/profile">User Profile</Link>
-        </li>
-
-        {loggedIn ? (
+      {loggedIn ? (
+        <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/profile">User Profile</Link>
+          </li>
+          <li>
+            <Link href="/new-review">New Review</Link>
+          </li>
           <li>
             <LogoutButton onLogout={() => (loggedIn = false)} />
           </li>
-        ) : (
+        </ul>
+      ) : (
+        <ul className={`${styles.links} ${isOpen ? styles.open : ""}`}>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/new-review">New Review</Link>
+          </li>
           <li className={styles.authGroup}>
             <Link href="/login">Login</Link>
-            <span>or</span>
+            <span> or </span>
             <Link href="/signup">Sign Up</Link>
           </li>
-        )}
-      </ul>
+        </ul>
+      )}
     </nav>
   )
 }

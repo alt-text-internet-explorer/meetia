@@ -4,14 +4,14 @@ import styles from "@/components/profile/UserProfile.module.css"
 
 // FIXME - SYCHRONIZE WITH BACKEND INSTEAD
 const collections = [
-  { id: 1, title: "Collection Title", src: "/file.svg", alt: "Collection 1" },
-  { id: 2, title: "Collection Title", src: "/file.svg", alt: "Collection 2" },
-  { id: 3, title: "Collection Title", src: "/file.svg", alt: "Collection 3" },
-  { id: 4, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
-  { id: 5, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
-  { id: 6, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
-  { id: 7, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
-  { id: 8, title: "Collection Title", src: "/file.svg", alt: "Collection 4" },
+  { id: 1, title: "First test", description: "This test collection has some data", src: "/file.svg", alt: "Collection 1" },
+  { id: 2, title: "Collection Title", src: "/file.svg", alt: "Collection 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
+  { id: 3, title: "Collection Title", src: "/file.svg", alt: "Collection 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
+  { id: 4, title: "Collection Title", src: "/file.svg", alt: "Collection 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
+  { id: 5, title: "Collection Title", src: "/file.svg", alt: "Collection 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
+  { id: 6, title: "Collection Title", src: "/file.svg", alt: "Collection 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
+  { id: 7, title: "Collection Title", src: "/file.svg", alt: "Collection 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
+  { id: 8, title: "Collection Title", src: "/file.svg", alt: "Collection 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue." },
 ]
 
 export default function Page({ id }) {
@@ -77,10 +77,8 @@ export default function Page({ id }) {
                   <div className="card-body overflow-y-auto" style={{ height: "150px" }}>
                     <h4 className="card-title h5 mb-1">{item.title}</h4>
                     <h6 className="card-subtitle text-muted small mb-2">Genre</h6>
-                    <p className="card-text text-secondary" style={{ fontSize: "0.8rem"}}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.
-                    </p>
-                  </div>
+                    <p className="card-text text-secondary" style={{ fontSize: "0.8rem"}}>{item.description}</p>
+                    </div>
                 </div>
 
               </div>

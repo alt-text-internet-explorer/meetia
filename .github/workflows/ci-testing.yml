@@ -17,3 +17,4 @@ jobs:
       - run: npm run build
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}

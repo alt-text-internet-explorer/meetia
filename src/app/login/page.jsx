@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useAuth } from "@/utils/authContext"
+import styles from "./login.module.css"
 
 export default function LoginPage() {
   const { login } = useAuth()
@@ -44,44 +45,42 @@ export default function LoginPage() {
     }
   }
 
-  const Login = () => {
-    return (
-      <form onSubmit={submitForm}>
-        <h1>Login</h1>
-        <div className={styles.form}>
-          <div className={styles.formcont}>
-            <div className={`${styles.inputGroup} form-group`}>
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                className="form-control"
-                value={creds.username}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={`${styles.inputGroup} form-group`}>
-              <label htmlFor="pwd">Password</label>
-              <input
-                type="password"
-                name="pwd"
-                id="pwd"
-                value={creds.pwd}
-                onChange={handleChange}
-                className="form-control"
-              />
-            </div>
+  return (
+    <form onSubmit={submitForm}>
+      <h1>Login</h1>
+      <div className={styles.form}>
+        <div className={styles.formcont}>
+          <div className={`${styles.inputGroup} form-group`}>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              className="form-control"
+              value={creds.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={`${styles.inputGroup} form-group`}>
+            <label htmlFor="pwd">Password</label>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              value={creds.pwd}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-            <div className={styles.inputGroup}>
-              <button type="submit" className={styles.button}>
-                Login
-              </button>
-            </div>
+          <div className={styles.inputGroup}>
+            <button type="submit" className={styles.button}>
+              Login
+            </button>
           </div>
         </div>
-        <p>{message}</p>
-      </form>
-    )
-  }
+      </div>
+      <p>{message}</p>
+    </form>
+  )
 }

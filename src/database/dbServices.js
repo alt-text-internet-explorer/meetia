@@ -87,5 +87,5 @@ export async function addReviewToCollection(id, new_rev) {
 }
 
 export async function getAllCollectionsFromOwner(oid) {
-    return Collection.find({ owner_id: oid })
+  return Collection.find({ owner_id: oid })
 }

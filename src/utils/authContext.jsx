@@ -25,7 +25,11 @@ function getServerSnapshot() {
 
 export function AuthProvider({ children }) {
   const router = useRouter()
-  const loggedIn = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  const loggedIn = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  )
 
   function login(token, redirectPath = "/") {
     localStorage.setItem("token", token)

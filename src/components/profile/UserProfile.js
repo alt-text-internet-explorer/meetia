@@ -90,7 +90,7 @@ export default function Page({ id }) {
             </div>
 
             <div className="overflow-y-auto h-100">
-              <h5>Username Profile</h5>
+              <Link href="/customize-profile">Username Profile</Link>
               <p
                 className="card-text text-secondary"
                 style={{ fontSize: "0.8rem" }}

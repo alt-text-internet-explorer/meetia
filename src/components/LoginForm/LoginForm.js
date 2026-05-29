@@ -1,10 +1,10 @@
 "use client"
-
+import React from "react"
 import { useState } from "react"
 import { useAuth } from "@/utils/authContext"
-import styles from "./login.module.css"
+import styles from "./LoginForm.module.css"
 
-export default function LoginPage() {
+function LoginPage() {
   const { login } = useAuth()
 
   const [creds, setCreds] = useState({
@@ -84,3 +84,5 @@ export default function LoginPage() {
     </form>
   )
 }
+
+export default LoginPage

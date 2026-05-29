@@ -35,7 +35,7 @@ export default function Dropdown() {
       >
         {selectedMedia}
       </button>
-
+      <input type="hidden" value={selectedMedia} name="type" />
       {isOpen && (
         <ul>
           {mediaOptions.map((media, index) => (

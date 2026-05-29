@@ -31,7 +31,7 @@ export async function addFriend(uname, friend_id) {
 }
 
 export async function getFriends(uname) {
-  User.findOne({
+  return await User.findOne({
     username: uname,
   }).select("friends")
 }
@@ -63,6 +63,12 @@ export async function getAllReviews() {
   return Review.find({})
 }
 
+export async function getReviewsFromUID(id) {
+  return Review.find({
+    owner_id: id,
+  })
+}
+
 //Collection functions
 export async function createCollection(collectionData) {
   const col = new Collection(collectionData)
@@ -84,4 +90,8 @@ export async function deleteCollectionById(id) {
 
 export async function addReviewToCollection(id, new_rev) {
   return Review.updateOne({ _id: id }, { $push: { reviews: new_rev } })
+}
+
+export async function getAllCollectionsFromOwner(oid) {
+  return Collection.find({ owner_id: oid })
 }

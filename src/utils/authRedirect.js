@@ -2,15 +2,15 @@
 
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { useAuth } from "./authContext"
 
 export function useRedirectIfLoggedIn(redirectPath = "/") {
   const router = useRouter()
+  const { loggedIn } = useAuth()
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
-
-    if (token) {
+    if (loggedIn) {
       router.replace(redirectPath)
     }
-  }, [router, redirectPath])
+  }, [loggedIn, router, redirectPath])
 }

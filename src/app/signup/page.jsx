@@ -1,12 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { useRedirectIfLoggedIn } from "@/utils/authRedirect"
+import { useAuth } from "@/utils/authContext"
+import styles from "./signup.module.css"
 
 export default function SignupPage() {
-  useRedirectIfLoggedIn()
-  const router = useRouter()
+  const { login } = useAuth()
 
   const [creds, setCreds] = useState({
     username: "",
@@ -36,49 +35,61 @@ export default function SignupPage() {
       body: JSON.stringify(creds),
     })
 
-    if (response.status === 201) {
-      const payload = await response.json()
-      localStorage.setItem("token", payload.token)
+    const payload = await response.json()
+
+    if (response.ok) {
       setMessage("Signup successful")
-      router.push("/")
+
+      login(payload.token, "/")
     } else {
-      setMessage("Signup error")
+      setMessage(payload.error || "Signup failed")
     }
   }
-
   return (
     <form onSubmit={submitForm}>
       <h1>Sign Up</h1>
-
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        value={creds.username}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="email">Email</label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        value={creds.email}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="pwd">Password</label>
-      <input
-        type="password"
-        name="pwd"
-        id="pwd"
-        value={creds.pwd}
-        onChange={handleChange}
-      />
-
-      <button type="submit">Sign Up</button>
-
+      <div className={styles.form}>
+        <div className={styles.formcont}>
+          <div className={`${styles.inputGroup} form-group`}>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              className="form-control"
+              value={creds.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={`${styles.inputGroup} form-group`}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              value={creds.email}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className={`${styles.inputGroup} form-group`}>
+            <label htmlFor="pwd">Password</label>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              value={creds.pwd}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <button type="submit" className={styles.button}>
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
       <p>{message}</p>
     </form>
   )

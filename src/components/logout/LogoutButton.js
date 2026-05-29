@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter } from "next/router"
+import { useAuth } from "@/utils/authContext"
 
 // make sure to update the state of the component with the logout button
 // based on whether the user is loggedin or not.
@@ -8,17 +8,7 @@ import { useRouter } from "next/router"
 // example: <LogoutButton onLogout={() => setLoggedIn(false)} />
 
 export default function LogoutButton({ onLogout }) {
-  const router = useRouter
+  const { logout } = useAuth()
 
-  function handleClick() {
-    localStorage.removeItem("token")
-
-    if (onLogout) {
-      // executes the function passed from the parent
-      onLogout()
-    }
-
-    router.push("/login")
-  }
-  return <button onClick={handleClick}>Logout</button>
+  return <button onClick={() => logout("/login")}>Logout</button>
 }

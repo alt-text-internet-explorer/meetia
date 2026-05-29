@@ -1,14 +1,15 @@
 "use client"
-
+import React from "react"
 import { useState } from "react"
 import { useAuth } from "@/utils/authContext"
-import styles from "./login.module.css"
+import styles from "./SignUpForm.module.css"
 
-export default function LoginPage() {
+function SignupPage() {
   const { login } = useAuth()
 
   const [creds, setCreds] = useState({
     username: "",
+    email: "",
     pwd: "",
   })
 
@@ -26,7 +27,7 @@ export default function LoginPage() {
   async function submitForm(event) {
     event.preventDefault()
 
-    const response = await fetch("/api/login", {
+    const response = await fetch("/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,17 +38,17 @@ export default function LoginPage() {
     const payload = await response.json()
 
     if (response.ok) {
-      setMessage("Login successful")
+      setMessage("Signup successful")
 
       login(payload.token, "/")
     } else {
-      setMessage(payload.error || "Login failed")
+      setMessage(payload.error || "Signup failed")
     }
   }
 
   return (
     <form onSubmit={submitForm}>
-      <h1>Login</h1>
+      <h1>Sign Up</h1>
       <div className={styles.form}>
         <div className={styles.formcont}>
           <div className={`${styles.inputGroup} form-group`}>
@@ -62,6 +63,17 @@ export default function LoginPage() {
             />
           </div>
           <div className={`${styles.inputGroup} form-group`}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              value={creds.email}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className={`${styles.inputGroup} form-group`}>
             <label htmlFor="pwd">Password</label>
             <input
               type="password"
@@ -72,10 +84,9 @@ export default function LoginPage() {
               className="form-control"
             />
           </div>
-
           <div className={styles.inputGroup}>
             <button type="submit" className={styles.button}>
-              Login
+              Sign Up
             </button>
           </div>
         </div>
@@ -84,3 +95,5 @@ export default function LoginPage() {
     </form>
   )
 }
+
+export default SignupPage

@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: .env
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -15,3 +16,6 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}

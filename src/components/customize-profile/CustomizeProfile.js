@@ -1,44 +1,57 @@
-import Link from "next/link"
-import Image from "next/image"
-import styles from "@/components/customize-profile/CustomizeProfile.module.css"
+"use client"
+import React, { useRef } from "react"
+import { useState } from "react"
+import styles from "./CustomizeProfile.module.css"
 
-function Customize({}) {
+function Customize(props) {
+  const formRef = useRef(null)
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+    try {
+      let response = await fetch("/api/submitform", {
+        method: "POST",
+        body: formData,
+      })
+      response = await response.json()
+      alert(`Changes Saved!`)
+    } catch (error) {
+      // Handle error
+      console.error("Error submitting form:", error)
+    }
+    formRef.current.reset() //Clear all inputs
+  }
   return (
-    <form onSubmit={submitForm}>
-      <h1>Login</h1>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <div className={styles.form}>
-        <div className={styles.formcont}>
-          <div className={`${styles.inputGroup} form-group`}>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              className="form-control"
-              value={creds.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={`${styles.inputGroup} form-group`}>
-            <label htmlFor="pwd">Password</label>
-            <input
-              type="password"
-              name="pwd"
-              id="pwd"
-              value={creds.pwd}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
+        <ul className={styles.formcont}>
+          <label>Profile Picture</label>
+          <input
+            type="image"
+          />
+          <label htmlFor="title">Display Name </label>
+          <input
+            type="text"
+            name="title"
+            className={styles.inputTitle}
+            required
+          />
 
-          <div className={styles.inputGroup}>
-            <button type="submit" className={styles.button}>
-              Login
-            </button>
-          </div>
-        </div>
+          <label htmlFor="rbody">Bio </label>
+          <textarea
+            type="text"
+            name="rbody"
+            className={styles.inputBody}
+            required
+          />
+
+          <button type="submit" className={styles.button}>
+            Save Changes{" "}
+          </button>
+        </ul>
       </div>
-      <p>{message}</p>
     </form>
   )
 }

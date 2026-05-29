@@ -1,30 +1,38 @@
 .form {
   font-family: Playfair_Display;
-  font-size: larger;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.inputTitle {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.inputBody {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
 }
 
 .formcont {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   background-color: #b4c098;
-  margin: 2px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
-
-  width: 75%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 1000px;
   max-height: 500px;
   overflow-y: auto;
 }
 
 .button {
-  width: 100px;
+  width: 150px;
   height: 50px;
-  background-color: #adb19b;
+  background-color: #86923f;
   color: #fff;
   cursor: pointer;
   border-radius: 8;

@@ -1,5 +1,6 @@
 "use client"
 import React, { useRef } from "react"
+import Image from "next/image"
 import { useState } from "react"
 import styles from "./CustomizeProfile.module.css"
 
@@ -25,28 +26,42 @@ function Customize(props) {
   }
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
+      <h3>Customize User Profile</h3>
       <div className={styles.form}>
         <ul className={styles.formcont}>
-          <label>Profile Picture</label>
-          <input
-            type="image"
-          />
-          <label htmlFor="title">Display Name </label>
-          <input
-            type="text"
-            name="title"
-            className={styles.inputTitle}
-            required
-          />
-
-          <label htmlFor="rbody">Bio </label>
-          <textarea
-            type="text"
-            name="rbody"
-            className={styles.inputBody}
-            required
-          />
-
+          <div>
+            <label htmlFor="image-upload">Profile Picture</label>
+            <br />
+            <input type="file" id="image-upload" accept="image/*" />
+          </div>
+          <div>
+            <label htmlFor="display-name">Display Name </label>
+            <br />
+            <input
+              type="text"
+              name="display-name"
+              className={styles.inputTitle}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="my-interests">My Interests </label>
+            <textarea
+              type="text"
+              name="my-interests"
+              className={styles.inputBody}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="about-me">About Me </label>
+            <textarea
+              type="text"
+              name="about-me"
+              className={styles.inputBody}
+              required
+            />
+          </div>
           <button type="submit" className={styles.button}>
             Save Changes{" "}
           </button>

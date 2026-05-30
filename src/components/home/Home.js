@@ -35,6 +35,15 @@ export default async function Page() {
     console.log("Error fetching reviews:", e)
   }
 
+  const colorType = {
+    article: "bg-warning",
+    book: "bg-success",
+    movie: "bg-danger",
+    music: "bg-info",
+    podcast: "bg-primary",
+    tv_show: "bg-secondary",
+  }
+
   return (
     <main>
       <div className="row">
@@ -47,24 +56,36 @@ export default async function Page() {
               style={{ maxWidth: "700px" }}
               key={item._id}
             >
-              <div className="container-fluid p-1 mb-1 bg-primary text-white text-center"></div>
+              <div
+                className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
+              ></div>
 
-              <div className="card-header mb-2">
-                Genre / Topic, or something else here?
-              </div>
+              <div className="card-header mb-2">{item.type}</div>
 
-              <div className="d-flex px-3 align-items-center">
-                <Image
-                  className="rounded-2"
-                  src="/file.svg"
-                  width={50}
-                  height={50}
-                  alt="Picture of the collection"
-                />
-                <div className="px-1">
-                  <h4 className="card-title">{item.title}</h4>
-                  <h4 className="card-title">{item._id.toString()}</h4>
-                  <h6 className="card-subtitle text-muted">Review Score: {item.rating}</h6>
+              <div className="card-group">
+                <div className="card border-0 w-100">
+                  <div className="d-flex flex-column px-3 align-items-start mb-0">
+                    <h4 className="card-title">{item.title}</h4>
+                    <h6 className="fs-5 mb-0" style={{ color: "#e87400" }}>
+                      {"★".repeat(item.rating)}
+                      {"☆".repeat(5 - item.rating)}
+                    </h6>
+                  </div>
+                </div>
+
+                <div className="card border-0 px-3 w-100 text-end">
+                  <div className="px-0">
+                    <Image
+                      className="rounded-2"
+                      src="/file.svg"
+                      width={50}
+                      height={50}
+                      alt="Picture of the collection"
+                    />
+                    <h6 className="card-title fs-8 align-items-center mb-0">
+                      {item._id.toString()}
+                    </h6>
+                  </div>
                 </div>
               </div>
 
@@ -88,32 +109,13 @@ export default async function Page() {
                     <h6 className="card-subtitle text-muted">
                       by {item.author}
                     </h6>
-                    <p className="card-text">{item.review_text}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Morbi tincidunt sapien sem, sit amet convallis sapien
-                      consequat quis. Suspendisse aliquet pulvinar urna eu
-                      congue. Suspendisse orci magna, aliquam ut vestibulum
-                      eget, pellentesque ac leo. Sed dignissim risus sit amet
-                      lorem malesuada congue.
-                    </p>
+                    <p className="card-text">synopsis of book goes here?</p>
                   </div>
                 </div>
               </div>
 
               <div className="card-body">
-                <p className="card-text">{item.review_text}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                  tincidunt sapien sem, sit amet convallis sapien consequat
-                  quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse
-                  orci magna, aliquam ut vestibulum eget, pellentesque ac leo.
-                  Sed dignissim risus sit amet lorem malesuada congue. Morbi non
-                  tincidunt mi. Morbi eleifend eget velit ut aliquam. Quisque
-                  condimentum quam ligula, quis pharetra tortor pretium tempor.
-                  Vestibulum ornare commodo ante, at blandit felis tempor vitae.
-                  Sed vitae nisl vestibulum, molestie lectus ac, tempor orci.
-                  Maecenas sodales faucibus pulvinar. Proin feugiat felis
-                  viverra mi porta, eleifend dignissim felis tempus.
-                </p>
+                <p className="card-text">{item.review_text}</p>
               </div>
 
               <div className="card-footer">
@@ -148,78 +150,3 @@ export default async function Page() {
     </main>
   )
 }
-
-/*
-import Image from "next/image"
-import Link from "next/link"
-import styles from "@/components/home/Home.module.css"
-import {
-  getAllReviews,
-  getFriends,
-  getReviewById,
-  getReviewsFromUID,
-} from "@/database/dbServices"
-import { connectDB } from "@/database/db"
-
-export default async function Page() {
-  let reviews = []
-  // TODO: connect to login functionality
-  let loggedIn = false
-  let username = "abc"
-
-  try {
-    await connectDB()
-
-    if (loggedIn) {
-      let friend_ids = await getFriends(username)
-      for (let f of friend_ids["friends"]) {
-        let r = await getReviewsFromUID(f)
-        if (r != null && r[0] != undefined) {
-          console.log(r[0])
-          reviews.push(r[0])
-        }
-      }
-    } else {
-      reviews = await getAllReviews()
-    }
-  } catch (e) {
-    console.log("Error fetching reviews:", e)
-  }
-
-  return (
-    <main className={styles.page}>
-      {reviews.map((item) => (
-        <div className={styles.profileCard} key={item._id}>
-          <ul className={styles.collections} key={item._id}>
-            <li key={item._id}>
-              <div className={styles.title}>
-                <Link href="/profile">
-                  <Image
-                    className={styles.avatar}
-                    key={item._id}
-                    src="/file.svg"
-                    width={50}
-                    height={50}
-                    alt="Picture of the collection"
-                  />
-                </Link>
-                <h2>{item.title}</h2>
-              </div>
-
-              <div className={styles.bottomRow}>
-                <h2> {item.rating} </h2>
-
-                <div>
-                  <h2>{item.title}</h2>
-                  <h5>{item.author}</h5>
-                  <p> {item.review_text} </p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      ))}
-    </main>
-  )
-}
-*/

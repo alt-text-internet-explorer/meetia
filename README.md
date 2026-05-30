@@ -1,3 +1,7 @@
+## Azure Deployment Link
+
+https://thankful-coast-07313380f.7.azurestaticapps.net/
+
 ## Contributing
 
 We format our JSX according to the standard Prettier style guide: https://facebook.github.io/jsx/

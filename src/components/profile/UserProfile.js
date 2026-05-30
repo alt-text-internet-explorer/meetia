@@ -177,12 +177,7 @@ export default function Page({ id }) {
                           className="card-text text-secondary"
                           style={{ fontSize: "0.8rem" }}
                         >
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Morbi tincidunt sapien sem, sit amet convallis
-                          sapien consequat quis. Suspendisse aliquet pulvinar
-                          urna eu congue. Suspendisse orci magna, aliquam ut
-                          vestibulum eget, pellentesque ac leo. Sed dignissim
-                          risus sit amet lorem malesuada congue.
+                          {item.description}
                         </p>
                       </div>
                     </div>

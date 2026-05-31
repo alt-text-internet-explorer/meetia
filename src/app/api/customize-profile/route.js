@@ -4,18 +4,16 @@ import { connectDB } from "@/database/db"
 
 export async function POST(req, res) {
   const FormData = await req.formData()
-  const title = FormData.get("title")
-  const author = FormData.get("author")
-  const type = FormData.get("type")
-  const rating = FormData.get("rating")
-  const body = FormData.get("rbody")
+  const profilePicture = FormData.get("image-upload")
+  const displayName = FormData.get("display-name")
+  const interests = FormData.get("my-interests")
+  const about = FormData.get("about-me")
 
   let jsonObject = {
-    title: title,
-    author: author,
-    type: type,
-    rating: rating,
-    review_text: body,
+    profilePicture: profilePicture,
+    displayName: displayName,
+    interests: interests,
+    about: about,
   }
 
   await connectDB()
@@ -24,5 +22,5 @@ export async function POST(req, res) {
     console.log(error)
   })
 
-  return NextResponse.json({ type, title, author, rating, body })
+  return NextResponse.json({ profilePicture, displayName, interests, about })
 }

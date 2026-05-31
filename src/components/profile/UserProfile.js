@@ -72,6 +72,9 @@ const collections = [
 export default function Page({ id }) {
   return (
     <main>
+      <Link type="button" href="/customize-profile" className={styles.button}>
+        Edit profile
+      </Link>
       <div className="container py-4">
         <div
           className="card border-0 shadow-sm overflow-hidden p-3"
@@ -90,7 +93,7 @@ export default function Page({ id }) {
             </div>
 
             <div className="overflow-y-auto h-100">
-              <Link href="/customize-profile">Username Profile</Link>
+              <h5>Username Profile</h5>
               <p
                 className="card-text text-secondary"
                 style={{ fontSize: "0.8rem" }}

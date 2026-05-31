@@ -39,6 +39,20 @@
   border-radius: 8;
 }
 
+.deleteButton {
+  font-size: small;
+  width: 100px;
+  height: 40px;
+  background-color: #86923f;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8;
+}
+
+.hiddenInput {
+  display: none;
+}
+
 .inputGroup {
   width: 100%;
   max-width: 600px;

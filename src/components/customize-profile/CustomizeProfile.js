@@ -6,6 +6,30 @@ import styles from "./CustomizeProfile.module.css"
 
 function Customize(props) {
   const formRef = useRef(null)
+  const [preview, setPreview] = useState(null)
+  const fileInput = useRef(null)
+
+  // displays image after it's been uploaded
+  const handleImage = (event) => {
+    const file = event.target.files?.[0]
+
+    if (file) {
+      setPreview(URL.createObjectURL(file))
+    }
+  }
+
+  // delete image
+  const handleDelete = () => {
+    if (preview) {
+      URL.revokeObjectURL(preview)
+    }
+
+    setPreview(null)
+
+    if (fileInput.current) {
+      fileInput.current.value = ""
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -22,8 +46,11 @@ function Customize(props) {
       // Handle error
       console.error("Error submitting form:", error)
     }
-    formRef.current.reset() //Clear all inputs
+    //Clear all inputs
+    formRef.current.reset()
+    setPreview(null)
   }
+
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <h3>Customize User Profile</h3>
@@ -32,7 +59,34 @@ function Customize(props) {
           <div>
             <label htmlFor="image-upload">Profile Picture</label>
             <br />
-            <input type="file" id="image-upload" accept="image/*" />
+            {preview && (
+              <>
+                <Image
+                  src={preview}
+                  alt="profile picture"
+                  width={120}
+                  height={120}
+                />
+                <br />
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  className={styles.deleteButton}
+                >
+                  Remove Photo
+                </button>
+              </>
+            )}
+            {!preview && (
+              <input
+                ref={fileInput}
+                id="image-upload"
+                type="file"
+                name="image-upload"
+                accept="image/*"
+                onChange={handleImage}
+              />
+            )}
           </div>
           <div>
             <label htmlFor="display-name">Display Name </label>

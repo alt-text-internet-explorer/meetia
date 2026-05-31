@@ -6,12 +6,17 @@ const CustomizeUser = new Schema({
     ref: "User",
   },
 
+  profile_picture: {
+    type: Image,
+  },
   display_name: {
     type: String,
     required: true,
     trim: true,
   },
-
+  interests: {
+    type: String,
+  },
   bio: {
     type: String,
   },

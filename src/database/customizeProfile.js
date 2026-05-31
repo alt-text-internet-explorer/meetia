@@ -7,7 +7,7 @@ const CustomizeUser = new Schema({
   },
 
   profile_picture: {
-    type: Image,
+    type: String,
   },
   display_name: {
     type: String,

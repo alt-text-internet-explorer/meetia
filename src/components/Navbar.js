@@ -1,6 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
+import logoImg from "./Meetia.png"
 import styles from "./Navbar.module.css"
 import { useState } from "react"
 import { useAuth } from "@/utils/authContext"
@@ -13,7 +15,14 @@ export default function Navbar() {
   return (
     <nav className={styles.nav} data-cy="nav">
       {/* Website Name, fixed position */}
-      <div className={styles.logo}>Meetia</div>
+      <div>
+        <Image
+          src={logoImg}
+          alt="Meetia logo"
+          height={60}
+          style={{ width: "auto" }}
+        />
+      </div>
 
       {/* Toggle Menu Button for Mobile View */}
       <button onClick={() => setIsOpen(!isOpen)} className={styles.menu}>

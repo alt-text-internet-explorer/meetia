@@ -69,6 +69,16 @@ const collections = [
   },
 ]
 
+// TODO: sync with backend (see Home.js for an example)
+const colorType = {
+  genre1: "bg-warning-subtle",
+  genre2: "bg-success-subtle",
+  genre3: "bg-danger-subtle",
+  genre4: "bg-info-subtle",
+  genre5: "bg-primary-subtle",
+  genre6: "bg-secondary-subtle",
+}
+
 export default function Page({ id }) {
   return (
     <main>

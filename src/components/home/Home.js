@@ -36,19 +36,17 @@ export default async function Page() {
   }
 
   const colorType = {
-    article: "bg-warning",
-    book: "bg-success",
-    movie: "bg-danger",
-    music: "bg-info",
-    podcast: "bg-primary",
-    tv_show: "bg-secondary",
+    article: "bg-warning-subtle",
+    book: "bg-success-subtle",
+    movie: "bg-danger-subtle",
+    music: "bg-info-subtle",
+    podcast: "bg-primary-subtle",
+    tv_show: "bg-secondary-subtle",
   }
 
   return (
     <main>
-      <div className="row">
-        <div className="col">1 of 3</div>
-
+      <div className={styles.collections}>
         <div className="col col-md-5">
           {reviews.map((item) => (
             <div
@@ -144,8 +142,6 @@ export default async function Page() {
             </div>
           ))}
         </div>
-
-        <div className="col">3 of 3</div>
       </div>
     </main>
   )

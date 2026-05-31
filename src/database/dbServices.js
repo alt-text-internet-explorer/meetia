@@ -1,6 +1,7 @@
 import User from "./userSchema.js"
 import Review from "./reviewSchema.js"
 import Collection from "./collectionSchema.js"
+import Customize from "./customizeProfile.js"
 
 // User functions
 export async function createUser(userData) {
@@ -94,4 +95,15 @@ export async function addReviewToCollection(id, new_rev) {
 
 export async function getAllCollectionsFromOwner(oid) {
   return Collection.find({ owner_id: oid })
+}
+
+//User Profile Customization Functions
+export async function customizeProfile(profileData) {
+  const cust = new Customize(profileData)
+
+  return await cust.save()
+}
+
+export async function updateProfileById(id, param, updateTo) {
+  return Customize.updateOne({ _id: id }, { [param]: updateTo })
 }

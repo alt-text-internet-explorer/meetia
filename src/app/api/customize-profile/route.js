@@ -1,10 +1,9 @@
-import { customizeProfile } from "@/database/dbServices"
-import { NextResponse, NextRequest } from "next/server"
 import { connectDB } from "@/database/db"
+import User from "@/database/userSchema"
 
 export async function POST(req, res) {
   const FormData = await req.formData()
-  const profilePicture = FormData.get("image-upload")
+  //const profilePicture = FormData.get("image-upload")
   const displayName = FormData.get("display-name")
   const about = FormData.get("about-me")
 
@@ -16,9 +15,7 @@ export async function POST(req, res) {
 
   await connectDB()
 
-  customizeProfile(jsonObject).catch((error) => {
-    console.log(error)
-  })
+  updateUserById()
 
   return NextResponse.json({ profilePicture, displayName, interests, about })
 }

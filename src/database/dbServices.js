@@ -16,6 +16,12 @@ export async function getUserByUsername(uname) {
   })
 }
 
+export async function getUsernameByID(id) {
+  return User.findOne({
+    _id: id,
+  }).username
+}
+
 export async function deleteUserByUsername(uname) {
   return User.deleteOne({
     username: uname,

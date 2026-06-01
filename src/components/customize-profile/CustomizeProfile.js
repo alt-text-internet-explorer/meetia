@@ -36,7 +36,7 @@ function Customize(props) {
 
     const formData = new FormData(event.target)
     try {
-      let response = await fetch("/api/submitform", {
+      let response = await fetch("/api/customize-profile", {
         method: "POST",
         body: formData,
       })
@@ -95,15 +95,6 @@ function Customize(props) {
               type="text"
               name="display-name"
               className={styles.inputTitle}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="my-interests">My Interests </label>
-            <textarea
-              type="text"
-              name="my-interests"
-              className={styles.inputBody}
               required
             />
           </div>

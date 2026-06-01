@@ -28,8 +28,8 @@ export async function deleteUserByUsername(uname) {
   })
 }
 
-export async function updateUserByUsername(uname, param, updateTo) {
-  return User.updateOne({ username: uname }, { [param]: updateTo })
+export async function updateUserById(id, param, updateTo) {
+  return User.updateOne({ _id: id }, { [param]: updateTo })
 }
 
 //Social functions

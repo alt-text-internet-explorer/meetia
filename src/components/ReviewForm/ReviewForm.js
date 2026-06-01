@@ -3,6 +3,7 @@ import React, { useRef } from "react"
 import styles from "./ReviewForm.module.css"
 import TypeDropdown from "./TypeDropdown"
 import RatingDropdown from "./RatingDropdown"
+import CoverUpload from "./CoverImage"
 
 function Form(props) {
   const formRef = useRef(null)
@@ -31,6 +32,9 @@ function Form(props) {
         <ul className={styles.formcont}>
           <label htmlFor="type">Media Type </label>
           <TypeDropdown />
+
+          <label htmlFor="cover">Cover Photo </label>
+          <CoverUpload />
 
           <label htmlFor="title">Media Title </label>
           <input

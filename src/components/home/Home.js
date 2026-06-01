@@ -7,14 +7,14 @@ import {
   getFriends,
   getReviewById,
   getReviewsFromUID,
+  getUsernameByID,
 } from "@/database/dbServices"
 import { connectDB } from "@/database/db"
 
 export default async function Page() {
   let reviews = []
-  // TODO: connect to login functionality
+  let usernames = []
   let loggedIn = false
-  let username = "abc"
 
   try {
     await connectDB()
@@ -30,6 +30,10 @@ export default async function Page() {
       }
     } else {
       reviews = await getAllReviews()
+
+      for (i = 0; i < reviews.length; i++) {
+        usernames[i] = await getUsernameByID(item._id)
+      }
     }
   } catch (e) {
     console.log("Error fetching reviews:", e)
@@ -49,6 +53,7 @@ export default async function Page() {
       <div className={styles.collections}>
         <div className="col col-md-5">
           {reviews.map((item) => (
+            // {item._id.toString()}
             <div
               className="card mb-5 shadow-sm rounded-2 overflow-hidden"
               style={{ maxWidth: "700px" }}
@@ -81,7 +86,7 @@ export default async function Page() {
                       alt="Picture of the collection"
                     />
                     <h6 className="card-title fs-8 align-items-center mb-0">
-                      {item._id.toString()}
+                      {usernames[5]}
                     </h6>
                   </div>
                 </div>

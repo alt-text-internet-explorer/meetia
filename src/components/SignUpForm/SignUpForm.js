@@ -48,7 +48,6 @@ function SignupPage() {
 
   return (
     <form onSubmit={submitForm}>
-      <h1>Sign Up</h1>
       <div className={styles.form}>
         <div className={styles.formcont}>
           <div className={`${styles.inputGroup} form-group`}>

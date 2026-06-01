@@ -53,7 +53,6 @@ function Customize(props) {
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
-      <h3>Customize User Profile</h3>
       <div className={styles.form}>
         <ul className={styles.formcont}>
           <div>

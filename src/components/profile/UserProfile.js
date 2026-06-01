@@ -69,7 +69,31 @@ const collections = [
   },
 ]
 
-// TODO: sync with backend (see Home.js for an example)
+export default async function Page({ id }) {
+  let reviews = []
+  // TODO: connect to login functionality
+  let loggedIn = false
+  let username = "abc"
+
+  try {
+    await connectDB()
+
+    if (loggedIn) {
+      let friend_ids = await getFriends(username)
+      for (let f of friend_ids["friends"]) {
+        let r = await getReviewsFromUID(f)
+        if (r != null && r[0] != undefined) {
+          console.log(r[0])
+          reviews.push(r[0])
+        }
+      }
+    } else {
+      reviews = await getAllReviews()
+    }
+  } catch (e) {
+    console.log("Error fetching reviews:", e)
+  }
+
 const colorType = {
   genre1: "bg-warning-subtle",
   genre2: "bg-success-subtle",
@@ -79,7 +103,6 @@ const colorType = {
   genre6: "bg-secondary-subtle",
 }
 
-export default function Page({ id }) {
   return (
     <main>
       <Link type="button" href="/customize-profile" className={styles.button}>

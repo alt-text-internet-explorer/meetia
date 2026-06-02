@@ -58,7 +58,10 @@ export default async function Page() {
                 className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
               ></div>
 
-              <div className="card-header mb-2">{item.type}</div>
+              <div className="card-header mb-2 d-flex justify-content-between align-items-center">
+                <span>{item.type}</span>
+                <span>@{item.username}</span>
+              </div>
 
               <div className="card-group">
                 <div className="card border-0 w-100">

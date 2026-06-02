@@ -103,13 +103,13 @@ export async function getAllCollectionsFromOwner(oid) {
   return Collection.find({ owner_id: oid })
 }
 
-//User Profile Customization Functions
-export async function customizeProfile(profileData) {
-  const cust = new Customize(profileData)
-
-  return await cust.save()
+// Comment functions
+export async function writeComment(displayName, comment, rev_id) {
+  let new_comment = displayName + ": " + comment
+  return Review.updateOne({ _id: rev_id }, { $push: new_comment})
 }
 
-export async function updateProfileById(id, param, updateTo) {
-  return Customize.updateOne({ _id: id }, { [param]: updateTo })
+export async function getCommentsOnReview(rev_id) {
+  return Review.find( { _id: rev_id }).comments
 }
+

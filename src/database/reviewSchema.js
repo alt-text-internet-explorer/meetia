@@ -6,6 +6,12 @@ const ReviewSchema = new Schema({
     ref: "User",
   },
 
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
   title: {
     type: String,
     required: true,

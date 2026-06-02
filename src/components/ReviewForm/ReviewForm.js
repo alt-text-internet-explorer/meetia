@@ -3,26 +3,38 @@ import React, { useRef } from "react"
 import styles from "./ReviewForm.module.css"
 import TypeDropdown from "./TypeDropdown"
 import RatingDropdown from "./RatingDropdown"
+import { addAuthHeader } from "@/utils/authFetch"
+import { useAuth } from "@/utils/authContext"
 
 function Form(props) {
   const formRef = useRef(null)
+  const { logout } = useAuth()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
     try {
-      let response = await fetch("/api/submitform", {
+      const response = await fetch("/api/submitform", {
         method: "POST",
+        headers: addAuthHeader(),
         body: formData,
       })
-      response = await response.json()
+      if (response.status === 401) {
+        logout("/login")
+        return
+      }
+
+      if (!response.ok) {
+        throw new Error("Failed to submit review")
+      }
+
       alert(`Review Submitted!`)
+      formRef.current.reset() //Clear all inputs
     } catch (error) {
       // Handle error
       console.error("Error submitting form:", error)
     }
-    formRef.current.reset() //Clear all inputs
   }
 
   return (

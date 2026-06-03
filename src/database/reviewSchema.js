@@ -12,6 +12,12 @@ const ReviewSchema = new Schema({
     trim: true,
   },
 
+  display_name: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+
   title: {
     type: String,
     required: true,
@@ -41,10 +47,8 @@ const ReviewSchema = new Schema({
   },
 
   comments: {
-    type: [
-        String,
-    ],
-  }
+    type: [String],
+  },
 })
 
 const Review = mongoose.models.Review || mongoose.model("Review", ReviewSchema)

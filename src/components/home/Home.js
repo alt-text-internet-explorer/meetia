@@ -3,6 +3,7 @@ import Image from "next/image"
 import styles from "@/components/home/Home.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
 import { useEffect, useState } from "react"
+import { addFriend } from "@/database/dbServices"
 
 export default function Page() {
   // fetch reviews
@@ -35,6 +36,10 @@ export default function Page() {
     tv_show: "bg-secondary-subtle",
   }
 
+  function addFriendButton(friendid){
+    // addFriend("insert current user here", friendid);
+  }
+
   return (
     <main>
       <div className={styles.collections}>
@@ -53,6 +58,12 @@ export default function Page() {
                 <span>{item.type}</span>
                 <span>@{item.username}</span>
               </div>
+
+              <button 
+              href="#" 
+              style={{maxWidth: "150px"}}
+              className="btn btn-primary"
+              onClick={addFriendButton(item._id)}>Add Friend!!</button>
 
               <div className="card-group">
                 <div className="card border-0 w-100">

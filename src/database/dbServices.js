@@ -16,14 +16,20 @@ export async function getUserByUsername(uname) {
   })
 }
 
+export async function getUsernameByID(id) {
+  return User.findOne({
+    _id: id,
+  }).username
+}
+
 export async function deleteUserByUsername(uname) {
   return User.deleteOne({
     username: uname,
   })
 }
 
-export async function updateUserByUsername(uname, param, updateTo) {
-  return User.updateOne({ username: uname }, { [param]: updateTo })
+export async function updateUserById(id, param, updateTo) {
+  return User.updateOne({ _id: id }, { [param]: updateTo })
 }
 
 //Social functions
@@ -97,13 +103,13 @@ export async function getAllCollectionsFromOwner(oid) {
   return Collection.find({ owner_id: oid })
 }
 
-//User Profile Customization Functions
-export async function customizeProfile(profileData) {
-  const cust = new Customize(profileData)
-
-  return await cust.save()
+// Comment functions
+export async function writeComment(displayName, comment, rev_id) {
+  let new_comment = displayName + ": " + comment
+  return Review.updateOne({ _id: rev_id }, { $push: new_comment})
 }
 
-export async function updateProfileById(id, param, updateTo) {
-  return Customize.updateOne({ _id: id }, { [param]: updateTo })
+export async function getCommentsOnReview(rev_id) {
+  return Review.find( { _id: rev_id }).comments
 }
+

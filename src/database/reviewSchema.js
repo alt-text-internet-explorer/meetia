@@ -44,6 +44,12 @@ const ReviewSchema = new Schema({
   review_text: {
     type: String,
   },
+
+  comments: {
+    type: [
+        String,
+    ],
+  }
 })
 
 const Review = mongoose.models.Review || mongoose.model("Review", ReviewSchema)

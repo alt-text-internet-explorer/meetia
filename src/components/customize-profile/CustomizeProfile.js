@@ -3,6 +3,7 @@ import React, { useRef } from "react"
 import Image from "next/image"
 import { useState } from "react"
 import styles from "./CustomizeProfile.module.css"
+import { updateUserById } from "@/database/dbServices"
 
 function Customize(props) {
   const formRef = useRef(null)
@@ -29,23 +30,18 @@ function Customize(props) {
     if (fileInput.current) {
       fileInput.current.value = ""
     }
-  }
+  } 
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
-    try {
-      let response = await fetch("/api/submitform", {
-        method: "POST",
-        body: formData,
-      })
-      response = await response.json()
-      alert(`Changes Saved!`)
-    } catch (error) {
-      // Handle error
-      console.error("Error submitting form:", error)
-    }
+    //get current user
+    current_user_id = 1234
+    
+    await updateUserById(current_user_id, "displayName", formData.get("display-name"))
+    await updateUserById(current_user_id, "bio", formData.get("about-me"))    
+
     //Clear all inputs
     formRef.current.reset()
     setPreview(null)

@@ -82,9 +82,14 @@ const colorType = {
 export default function Page({ id }) {
   return (
     <main>
-      <Link type="button" href="/customize-profile" className={styles.button}>
-        Edit profile
-      </Link>
+      <div className={styles.header}>
+        <Link type="button" href="/customize-profile" className={styles.button}>
+          Edit profile
+        </Link>
+        <Link type="button" href="/collection-form" className={styles.button}>
+          New Collection
+        </Link>
+      </div>
       <div className="container py-4">
         <div
           className="card border-0 shadow-sm overflow-hidden p-3"

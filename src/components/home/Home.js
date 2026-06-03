@@ -1,39 +1,30 @@
+"use client"
 import Image from "next/image"
-import Link from "next/link"
 import styles from "@/components/home/Home.module.css"
+import { addAuthHeader } from "@/utils/authFetch"
+import { useEffect, useState } from "react"
 
-import {
-  getAllReviews,
-  getFriends,
-  getReviewById,
-  getReviewsFromUID,
-} from "@/database/dbServices"
-import { connectDB } from "@/database/db"
+export default function Page() {
+  // fetch reviews
+  const [reviews, setReviews] = useState([])   
 
-export default async function Page() {
-  let reviews = []
-  // TODO: connect to login functionality
-  let loggedIn = false
-  let username = "abc"
-
-  try {
-    await connectDB()
-
-    if (loggedIn) {
-      let friend_ids = await getFriends(username)
-      for (let f of friend_ids["friends"]) {
-        let r = await getReviewsFromUID(f)
-        if (r != null && r[0] != undefined) {
-          console.log(r[0])
-          reviews.push(r[0])
+  useEffect(() => {
+    async function loadReviews() {
+        try {
+            let response = await fetch("http://localhost:3000/api/getReviews", {
+                method: "GET",
+                headers: addAuthHeader()
+            })
+            const data = await response.json();
+            setReviews(data.reviews)
+        } catch (error) {
+            // Handle error
+            console.error("Error fetching reviews:", error)
         }
-      }
-    } else {
-      reviews = await getAllReviews()
     }
-  } catch (e) {
-    console.log("Error fetching reviews:", e)
-  }
+    loadReviews();
+    }, [])
+  
 
   const colorType = {
     article: "bg-warning-subtle",
@@ -58,7 +49,10 @@ export default async function Page() {
                 className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
               ></div>
 
-              <div className="card-header mb-2">{item.type}</div>
+              <div className="card-header mb-2 d-flex justify-content-between align-items-center">
+                <span>{item.type}</span>
+                <span>@{item.username}</span>
+              </div>
 
               <div className="card-group">
                 <div className="card border-0 w-100">

@@ -30,7 +30,7 @@ function Customize(props) {
     if (fileInput.current) {
       fileInput.current.value = ""
     }
-  } 
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -38,23 +38,22 @@ function Customize(props) {
     const formData = new FormData(event.target)
 
     async function customize() {
-        try {
-            let response = await fetch("/api/customize-profile", {
-                method: "POST",
-                headers: addAuthHeader(),
-                body: formData
-            })
-            const resp = await response.status;
-            if (resp != 200){
-                console.error("Error customizing", resp)
-            }
-        } catch (error) {
-            // Handle error
-            console.error("Error posting customization:", error)
+      try {
+        let response = await fetch("/api/customize-profile", {
+          method: "POST",
+          headers: addAuthHeader(),
+          body: formData,
+        })
+        const resp = await response.status
+        if (resp != 200) {
+          console.error("Error customizing", resp)
         }
+      } catch (error) {
+        // Handle error
+        console.error("Error posting customization:", error)
+      }
     }
-    customize();
- 
+    customize()
 
     //Clear all inputs
     formRef.current.reset()
@@ -104,15 +103,6 @@ function Customize(props) {
               type="text"
               name="display-name"
               className={styles.inputTitle}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="my-interests">My Interests </label>
-            <textarea
-              type="text"
-              name="my-interests"
-              className={styles.inputBody}
               required
             />
           </div>

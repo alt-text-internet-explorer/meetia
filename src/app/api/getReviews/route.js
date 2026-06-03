@@ -15,8 +15,8 @@ export async function GET(req) {
     revs = await getAllReviews()
   } else {
     console.log("getting friend reviews")
-    for (const id of user.friends){
-        revs.push(await getReviewsFromUID(id))
+    for (const id of user.friends) {
+      revs.push(await getReviewsFromUID(id))
     }
   }
 

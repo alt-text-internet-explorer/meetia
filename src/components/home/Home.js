@@ -6,25 +6,24 @@ import { useEffect, useState } from "react"
 
 export default function Page() {
   // fetch reviews
-  const [reviews, setReviews] = useState([])   
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     async function loadReviews() {
-        try {
-            let response = await fetch("/api/getReviews", {
-                method: "GET",
-                headers: addAuthHeader()
-            })
-            const data = await response.json();
-            setReviews(data.reviews)
-        } catch (error) {
-            // Handle error
-            console.error("Error fetching reviews:", error)
-        }
+      try {
+        let response = await fetch("/api/getReviews", {
+          method: "GET",
+          headers: addAuthHeader(),
+        })
+        const data = await response.json()
+        setReviews(data.reviews)
+      } catch (error) {
+        // Handle error
+        console.error("Error fetching reviews:", error)
+      }
     }
-    loadReviews();
-    }, [])
-  
+    loadReviews()
+  }, [])
 
   const colorType = {
     article: "bg-warning-subtle",

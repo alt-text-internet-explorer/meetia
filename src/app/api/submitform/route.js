@@ -18,13 +18,14 @@ export async function POST(req, res) {
   const body = FormData.get("rbody")
 
   let jsonObject = {
-    owner_id: user.id,
+    owner_id: user._id,
     username: user.username,
     title: title,
     author: author,
     type: type,
     rating: rating,
     review_text: body,
+    comments: [],
   }
 
   await connectDB()

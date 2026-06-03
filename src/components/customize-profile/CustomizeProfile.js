@@ -1,9 +1,9 @@
 "use client"
 import React, { useRef } from "react"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./CustomizeProfile.module.css"
-import { updateUserById } from "@/database/dbServices"
+import { addAuthHeader } from "@/utils/authFetch"
 
 function Customize(props) {
   const formRef = useRef(null)
@@ -36,11 +36,25 @@ function Customize(props) {
     event.preventDefault()
 
     const formData = new FormData(event.target)
-    //get current user
-    current_user_id = 1234
-    
-    await updateUserById(current_user_id, "displayName", formData.get("display-name"))
-    await updateUserById(current_user_id, "bio", formData.get("about-me"))    
+
+    async function customize() {
+        try {
+            let response = await fetch("/api/customize-profile", {
+                method: "POST",
+                headers: addAuthHeader(),
+                body: formData
+            })
+            const resp = await response.status;
+            if (resp != 200){
+                console.error("Error customizing", resp)
+            }
+        } catch (error) {
+            // Handle error
+            console.error("Error posting customization:", error)
+        }
+    }
+    customize();
+ 
 
     //Clear all inputs
     formRef.current.reset()

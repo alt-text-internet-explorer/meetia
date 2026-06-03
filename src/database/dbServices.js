@@ -1,6 +1,6 @@
 import User from "./userSchema.js"
 import Review from "./reviewSchema.js"
-//import Collection from "./collectionSchema.js"
+import Collection from "./collectionSchema.js"
 import Customize from "./customizeProfile.js"
 
 // User functions

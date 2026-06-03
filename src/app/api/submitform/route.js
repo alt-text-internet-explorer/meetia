@@ -9,6 +9,7 @@ export async function POST(req, res) {
   const type = FormData.get("type")
   const rating = FormData.get("rating")
   const body = FormData.get("rbody")
+  const cover = FormData.get("cover")
 
   let jsonObject = {
     title: title,
@@ -16,6 +17,7 @@ export async function POST(req, res) {
     type: type,
     rating: rating,
     review_text: body,
+    cover: cover
   }
 
   await connectDB()

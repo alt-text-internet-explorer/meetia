@@ -12,6 +12,11 @@ const ReviewSchema = new Schema({
     trim: true,
   },
 
+  display_name: {
+    type: String,
+    trim: true,
+  },
+
   title: {
     type: String,
     required: true,

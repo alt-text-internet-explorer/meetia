@@ -4,6 +4,23 @@ const CollectionSchema = new Schema({
   owner_id: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
+  },
+
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  genre: {
+    type: String,
+    trim: true,
+  },
+
+  description: {
+    type: String,
+    trim: true,
   },
 
   reviews: [

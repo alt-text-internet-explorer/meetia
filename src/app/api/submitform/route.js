@@ -20,6 +20,7 @@ export async function POST(req, res) {
   let jsonObject = {
     owner_id: user.id,
     username: user.username,
+    display_name: user.displayName ? user.displayName : user.username,
     title: title,
     author: author,
     type: type,

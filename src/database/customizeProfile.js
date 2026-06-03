@@ -11,7 +11,6 @@ const CustomizeUser = new Schema({
   },
   display_name: {
     type: String,
-    required: true,
     trim: true,
   },
   interests: {

@@ -1,6 +1,7 @@
 "use client"
 import React, { useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 import styles from "./CustomizeProfile.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
@@ -115,9 +116,9 @@ function Customize(props) {
               required
             />
           </div>
-          <button type="submit" className={styles.button}>
-            Save Changes{" "}
-          </button>
+          <Link type="button" href="/profile" className={styles.button}>
+            Save Changes
+          </Link>
         </ul>
       </div>
     </form>

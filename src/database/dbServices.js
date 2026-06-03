@@ -1,7 +1,6 @@
 import User from "./userSchema.js"
 import Review from "./reviewSchema.js"
 import Collection from "./collectionSchema.js"
-import Customize from "./customizeProfile.js"
 
 // User functions
 export async function createUser(userData) {
@@ -106,10 +105,9 @@ export async function getAllCollectionsFromOwner(oid) {
 // Comment functions
 export async function writeComment(displayName, comment, rev_id) {
   let new_comment = displayName + ": " + comment
-  return Review.updateOne({ _id: rev_id }, { $push: new_comment})
+  return Review.updateOne({ _id: rev_id }, { $push: new_comment })
 }
 
 export async function getCommentsOnReview(rev_id) {
-  return Review.find( { _id: rev_id }).comments
+  return Review.find({ _id: rev_id }).comments
 }
-

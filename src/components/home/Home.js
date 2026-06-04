@@ -25,6 +25,27 @@ export default function Page() {
     loadReviews()
   }, [])
 
+  useEffect(() => {
+    const comm = "FAKE COMMENT!"
+    async function postComment() {
+      try {
+        let response = await fetch("/api/postComment", {
+          method: "POST",
+          headers: addAuthHeader(),
+          body: comm
+        })
+        const data = await response.status
+        
+        if (data != 200){
+            console.error("Error from postComment function:", error)
+        }
+      } catch (error) {
+        // Handle error
+        console.error("Error posting comment:", error)
+      }
+    }
+  }, [])
+
   const colorType = {
     article: "bg-warning-subtle",
     book: "bg-success-subtle",

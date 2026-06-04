@@ -74,7 +74,7 @@ export default function Page() {
                       alt="Picture of the collection"
                     />
                     <h6 className="card-title fs-8 align-items-center mb-0">
-                      {item._id.toString()}
+                      {item.display_name ? item.display_name : item.username}
                     </h6>
                   </div>
                 </div>

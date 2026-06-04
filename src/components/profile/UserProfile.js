@@ -1,98 +1,31 @@
+"use client"
 import Link from "next/link"
 import Image from "next/image"
 import styles from "@/components/profile/UserProfile.module.css"
+import { addAuthHeader } from "@/utils/authFetch"
+import { useEffect, useState } from "react"
 
-// FIXME - SYCHRONIZE WITH BACKEND INSTEAD
-const collections = [
-  {
-    id: 1,
-    title: "First test",
-    description: "This test collection has some data",
-    src: "/file.svg",
-    alt: "Collection 1",
-  },
-  {
-    id: 2,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 2",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 3,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 3",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 4,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 5,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 6,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 7,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-  {
-    id: 8,
-    title: "Collection Title",
-    src: "/file.svg",
-    alt: "Collection 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-  },
-]
+export default function Page() {
+  // fetch collections
+  const [collections, setCollections] = useState([])   
 
-export default async function Page({ id }) {
-  let reviews = []
-  // TODO: connect to login functionality
-  let loggedIn = false
-  let username = "abc"
-
-  try {
-    await connectDB()
-
-    if (loggedIn) {
-      let friend_ids = await getFriends(username)
-      for (let f of friend_ids["friends"]) {
-        let r = await getReviewsFromUID(f)
-        if (r != null && r[0] != undefined) {
-          console.log(r[0])
-          reviews.push(r[0])
+  useEffect(() => {
+    async function loadCollections() {
+        try {
+            let response = await fetch("/api/getCollections", {
+                method: "GET",
+                headers: addAuthHeader()
+            })
+            const data = await response.json();
+            setCollections(data.collections)
+            console.log("AAAAAAAAAAAAa")
+        } catch (error) {
+            // Handle error
+            console.error("Error fetching collections:", error)
         }
-      }
-    } else {
-      reviews = await getAllReviews()
     }
-  } catch (e) {
-    console.log("Error fetching reviews:", e)
-  }
+    loadCollections();
+    }, []);
 
 const colorType = {
   genre1: "bg-warning-subtle",
@@ -130,7 +63,8 @@ const colorType = {
               <p
                 className="card-text text-secondary"
                 style={{ fontSize: "0.8rem" }}
-              >
+              >.
+
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                 tincidunt sapien sem, sit amet convallis sapien consequat quis.
                 Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
@@ -174,7 +108,8 @@ const colorType = {
 
       <div className="container py-4">
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {collections.map((item) => (
+          <h1>{collections[0].reviews[0]._id.toString()}</h1>
+          {/* {collections.map((item) => (
             <div className="col" key={item.id}>
               <Link href={`/collections/${item.id}`}>
                 <div
@@ -221,7 +156,7 @@ const colorType = {
                 </div>
               </Link>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </main>

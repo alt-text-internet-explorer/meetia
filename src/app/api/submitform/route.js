@@ -18,7 +18,7 @@ export async function POST(req, res) {
   const body = FormData.get("rbody")
 
   let jsonObject = {
-    owner_id: user._id,
+    owner_id: user.user_id,
     username: user.username,
     display_name: user.displayName ? user.displayName : user.username,
     title: title,

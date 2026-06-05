@@ -35,6 +35,10 @@ const UserSchema = new Schema({
     trim: true,
   },
 
+  profileImage: {
+    type: String,
+  },
+
   friends: {
     type: [
       {

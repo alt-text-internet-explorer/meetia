@@ -27,16 +27,6 @@ export default async function Page({ id }) {
           style={{ height: "200px" }}
         >
           <div className="d-flex flex-row h-100 align-items-center">
-            <div className="flex-shrink-0 me-3">
-              <Image
-                className="rounded-2"
-                src="/file.svg"
-                width={200}
-                height={200}
-                alt="Picture of the collection"
-              />
-            </div>
-
             <div className="overflow-y-auto h-100">
               <h5>{collection.title}</h5>
 

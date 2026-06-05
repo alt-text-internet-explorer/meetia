@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
 import styles from "@/components/home/Home.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
 import { useEffect, useState } from "react"
@@ -72,9 +73,10 @@ export default function Page() {
               style={{ maxWidth: "700px" }}
               key={item._id}
             >
-              <div
-                className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
-              ></div>
+              <Link href={`/media/${item._id}`}>
+                <div
+                  className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
+                ></div>
 
               <div className="card-header mb-2 d-flex justify-content-between align-items-center">
                 <span>{item.type}</span>
@@ -97,7 +99,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-
+              </Link>
               <hr></hr>
 
               <div className="card-body">

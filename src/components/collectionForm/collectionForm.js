@@ -3,10 +3,12 @@
 import React, { useRef, useState } from "react"
 import styles from "./collectionForm.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
+import { useAuth } from "@/utils/authContext"
 
 function Customize() {
   const formRef = useRef(null)
   const [loading, setLoading] = useState()
+  const { logout } = useAuth()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -21,9 +23,17 @@ function Customize() {
         headers: addAuthHeader(),
         body: formData,
       })
-      response = await response.json()
-      alert(`Changes Saved!`)
 
+      if (response.status === 401) {
+        logout("/login")
+        return
+      }
+
+      if (!response.ok) {
+        throw new Error("Failed to submit collection")
+      }
+
+      alert(`Changes Saved!`)
       //Clear all inputs
       formRef.current.reset()
     } catch (error) {

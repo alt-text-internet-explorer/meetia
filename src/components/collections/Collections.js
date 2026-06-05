@@ -1,71 +1,22 @@
 import Image from "next/image"
 import Link from "next/link"
 import styles from "@/components/collections/Collections.module.css"
+import { connectDB } from "@/database/db"
+import { getCollectionById } from "@/database/dbServices"
 
-// FIXME - SYCHRONIZE WITH BACKEND INSTEAD
-const collectionsList = [
-  {
-    id: 0,
-    collectionTitle: "Blank!",
-
-    items: [
-      {
-        id: 0,
-        title: "Lorem ipsum Review",
-        src: "/file.svg",
-        alt: "Collection 1",
-        subtitle: "No",
-        summary: "Nothing here",
-      },
-    ],
-  },
-  {
-    id: 1,
-    collectionTitle: "Title of this test collection!",
-
-    items: [
-      {
-        id: 1,
-        title: "Lorem ipsum Review",
-        src: "/file.svg",
-        alt: "Collection 1",
-        subtitle: "5 stars Lorem ipsum!",
-        summary:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien sem, sit amet convallis sapien consequat quis. Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed dignissim risus sit amet lorem malesuada congue.",
-      },
-      {
-        id: 2,
-        title: "Title!",
-        src: "/file.svg",
-        alt: "Collection 1",
-        subtitle: "Genre",
-        summary: "General layout of the layout page",
-      },
-      {
-        id: 3,
-        title: "Nothing",
-        src: "/file.svg",
-        alt: "Collection 1",
-        subtitle: "Genre",
-        summary: "Nothing here.",
-      },
-      {
-        id: 4,
-        title: "Lorem ipsum text",
-        src: "/file.svg",
-        alt: "Collection 1",
-        subtitle: "Genre",
-        summary: "no review components",
-      },
-    ],
-  },
-]
-
-export default function Page({ id }) {
-  let collection = collectionsList.find((item) => item.id == id)
+export default async function Page({ id }) {
+  await connectDB()
+  const collection = await getCollectionById(id)
 
   if (!collection) {
-    collection = collectionsList[0]
+    return (
+      <div>
+        <p>No collection yet, get started!</p>
+        <Link type="button" href="/collection-form" className={styles.button}>
+          New Collection
+        </Link>
+      </div>
+    )
   }
 
   return (
@@ -83,52 +34,17 @@ export default function Page({ id }) {
                 width={200}
                 height={200}
                 alt="Picture of the collection"
-                style={{ objectFit: "cover" }}
               />
             </div>
 
             <div className="overflow-y-auto h-100">
-              <h5>{collection.collectionTitle}</h5>
-              <p
-                className="card-text text-secondary"
-                style={{ fontSize: "0.8rem" }}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                tincidunt sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Morbi tincidunt
-                sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Morbi tincidunt
-                sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Morbi tincidunt
-                sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Morbi tincidunt
-                sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Morbi tincidunt
-                sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Morbi tincidunt
-                sapien sem, sit amet convallis sapien consequat quis.
-                Suspendisse aliquet pulvinar urna eu congue. Suspendisse orci
-                magna, aliquam ut vestibulum eget, pellentesque ac leo. Sed
-                dignissim risus sit amet lorem malesuada congue.
+              <h5>{collection.title}</h5>
+
+              <p className="card-text text-secondary">
+                {collection.description}
               </p>
+
+              <small className="text-muted">{collection.genre}</small>
             </div>
           </div>
         </div>
@@ -136,49 +52,16 @@ export default function Page({ id }) {
 
       <div className="container py-4">
         <div className="row row-cols-1 g-4">
-          {collection.items.map((item) => (
-            <div className="col" key={item.id}>
-              <Link href={`/media/${item.id}`}>
-                <div
-                  className="card shadow-sm rounded-2 overflow-hidden h-100"
-                  style={{ maxHeight: "200px" }}
-                >
-                  <div className="container-fluid p-1 bg-primary text-white text-center"></div>
+          {collection.reviews.map((review) => (
+            <div className="col" key={review._id.toString()}>
+              <Link href={`/media/${review._id}`}>
+                <div className="card shadow-sm rounded-2 overflow-hidden h-100">
+                  <div className="card-body">
+                    <h4>{review.title}</h4>
 
-                  <div className="card-group h-100">
-                    <div
-                      className="card border-0"
-                      style={{ maxWidth: "125px" }}
-                    >
-                      <div className="card-body p-2 d-flex align-items-center">
-                        <Image
-                          className="rounded-2"
-                          src="/file.svg"
-                          width={110}
-                          height={150}
-                          alt="Picture of the collection"
-                          style={{ objectFit: "cover" }}
-                        />
-                      </div>
-                    </div>
+                    <h6 className="text-muted">by {review.author}</h6>
 
-                    <div className="card border-0 px-1">
-                      <div
-                        className="card-body overflow-y-auto"
-                        style={{ height: "150px" }}
-                      >
-                        <h4 className="card-title h5 mb-1">{item.title}</h4>
-                        <h6 className="card-subtitle text-muted small mb-2">
-                          {item.subtitle}
-                        </h6>
-                        <p
-                          className="card-text text-secondary"
-                          style={{ fontSize: "0.8rem" }}
-                        >
-                          {item.summary}
-                        </p>
-                      </div>
-                    </div>
+                    <p>{review.review_text}</p>
                   </div>
                 </div>
               </Link>

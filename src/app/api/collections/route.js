@@ -1,28 +1,33 @@
-// app/api/collections/route.js
-
 import { NextResponse } from "next/server"
 import { connectDB } from "@/database/db"
-import Collection from "@/database/collectionSchema"
 import { authenticateUser } from "@/database/auth"
+import { createCollection } from "@/database/dbServices"
 
 export async function POST(req) {
   const user = authenticateUser(req)
-
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const { title, genre, description } = await req.json()
+  const FormData = await req.formData()
+
+  const title = FormData.get("title")
+  const genre = FormData.get("genre")
+  const description = FormData.get("description")
+
+  let jsonObject = {
+    owner_id: user.user_id,
+    title: title,
+    genre: genre,
+    description: description,
+    reviews: [],
+  }
 
   await connectDB()
 
-  const collection = await Collection.create({
-    owner_id: user.id,
-    title,
-    genre,
-    description,
-    reviews: [],
+  createCollection(jsonObject).catch((error) => {
+    console.log(error)
   })
 
-  return NextResponse.json(collection, { status: 201 })
+  return NextResponse.json(jsonObject)
 }

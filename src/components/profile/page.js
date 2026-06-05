@@ -12,6 +12,7 @@ export default async function Page({ params }) {
 
   await connectDB()
   const user = await getUserByUsername(username)
+
   if (!user) {
     return <div>User Not Found</div>
   }
@@ -24,8 +25,10 @@ export default async function Page({ params }) {
     movie: "bg-danger-subtle",
     music: "bg-info-subtle",
     podcast: "bg-primary-subtle",
-    tv_show: "bg-secondary-subtle",
+    "tv show": "bg-secondary-subtle",
+    "no genre": "bg-dark-subtle",
   }
+
   return (
     <main>
       <div className={styles.header}>
@@ -45,7 +48,7 @@ export default async function Page({ params }) {
             <div className="flex-shrink-0 me-3">
               <Image
                 className="rounded-circle"
-                src="/file.svg"
+                src={user.profileImage || "/file.svg"}
                 width={200}
                 height={200}
                 alt="Picture of the collection"
@@ -81,22 +84,6 @@ export default async function Page({ params }) {
                     ></div>
 
                     <div className="card-group h-100">
-                      <div
-                        className="card border-0"
-                        style={{ maxWidth: "125px" }}
-                      >
-                        <div className="card-body p-2 d-flex align-items-center">
-                          <Image
-                            className="rounded-2"
-                            src="/file.svg"
-                            width={110}
-                            height={150}
-                            alt="Picture of the collection"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                      </div>
-
                       <div className="card border-0 px-1">
                         <div
                           className="card-body overflow-y-auto"

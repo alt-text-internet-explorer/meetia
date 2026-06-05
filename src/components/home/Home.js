@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
 import styles from "@/components/home/Home.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
 import { useEffect, useState } from "react"
@@ -32,7 +33,7 @@ export default function Page() {
         method: "POST",
         headers: addAuthHeader(),
         body: JSON.stringify({
-          comment: commentText,
+          comment: commentText.trim(),
           rev_id: reviewId,
         }),
       })
@@ -59,7 +60,7 @@ export default function Page() {
     movie: "bg-danger-subtle",
     music: "bg-info-subtle",
     podcast: "bg-primary-subtle",
-    tv_show: "bg-secondary-subtle",
+    "tv show": "bg-secondary-subtle",
   }
 
   return (
@@ -72,66 +73,34 @@ export default function Page() {
               style={{ maxWidth: "700px" }}
               key={item._id}
             >
-              <div
-                className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
-              ></div>
+              <Link href={`/media/${item._id}`}>
+                <div
+                  className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
+                ></div>
 
               <div className="card-header mb-2 d-flex justify-content-between align-items-center">
                 <span>{item.type}</span>
-                <span>@{item.username}</span>
+                <span>
+                  @{item.display_name ? item.display_name : item.username}
+                </span>
               </div>
 
               <div className="card-group">
                 <div className="card border-0 w-100">
                   <div className="d-flex flex-column px-3 align-items-start mb-0">
                     <h4 className="card-title">{item.title}</h4>
+                    <h6 className="card-subtitle text-muted">
+                      by {item.author}
+                    </h6>
                     <h6 className="fs-5 mb-0" style={{ color: "#e87400" }}>
                       {"★".repeat(item.rating)}
                       {"☆".repeat(5 - item.rating)}
                     </h6>
                   </div>
                 </div>
-
-                <div className="card border-0 px-3 w-100 text-end">
-                  <div className="px-0">
-                    <Image
-                      className="rounded-2"
-                      src="/file.svg"
-                      width={50}
-                      height={50}
-                      alt="Picture of the collection"
-                    />
-                    <h6 className="card-title fs-8 align-items-center mb-0">
-                      {item.display_name ? item.display_name : item.username}
-                    </h6>
-                  </div>
-                </div>
               </div>
-
+              </Link>
               <hr></hr>
-
-              <div className="card-group">
-                <div className="card border-0" style={{ maxWidth: "150px" }}>
-                  <div className="card-body">
-                    <Image
-                      className="rounded-2"
-                      src="/file.svg"
-                      width={150}
-                      height={200}
-                      alt="Picture of the collection"
-                    />
-                  </div>
-                </div>
-                <div className="card border-0 px-2">
-                  <div className="card-body">
-                    <h4 className="card-title">{item._title}</h4>
-                    <h6 className="card-subtitle text-muted">
-                      by {item.author}
-                    </h6>
-                    <p className="card-text">synopsis of book goes here?</p>
-                  </div>
-                </div>
-              </div>
 
               <div className="card-body">
                 <p className="card-text">{item.review_text}</p>
@@ -166,6 +135,7 @@ export default function Page() {
                   <button
                     className={styles.button}
                     onClick={() => postComment(item._id)}
+                    disabled={!commentText.trim()}
                   >
                     Post
                   </button>

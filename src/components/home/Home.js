@@ -4,6 +4,7 @@ import styles from "@/components/home/Home.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
 import { useEffect, useState } from "react"
 
+<<<<<<< HEAD
 export default function Page() {
   // fetch reviews
   const [reviews, setReviews] = useState([])
@@ -22,6 +23,40 @@ export default function Page() {
         // Handle error
         console.error("Error fetching reviews:", error)
       }
+=======
+import {
+  getAllReviews,
+  getFriends,
+  getReviewById,
+  getReviewsFromUID,
+  getUsernameByID,
+} from "@/database/dbServices"
+import { connectDB } from "@/database/db"
+
+export default async function Page() {
+  let reviews = []
+  let usernames = []
+  let loggedIn = false
+
+  try {
+    await connectDB()
+
+    if (loggedIn) {
+      let friend_ids = await getFriends(username)
+      for (let f of friend_ids["friends"]) {
+        let r = await getReviewsFromUID(f)
+        if (r != null && r[0] != undefined) {
+          console.log(r[0])
+          reviews.push(r[0])
+        }
+      }
+    } else {
+      reviews = await getAllReviews()
+
+      for (i = 0; i < reviews.length; i++) {
+        usernames[i] = await getUsernameByID(item._id)
+      }
+>>>>>>> 82b00a10fe7f86aea8d52ddbaa032d5f1e3b7c25
     }
     loadReviews()
   }, [])
@@ -67,6 +102,7 @@ export default function Page() {
       <div className={styles.collections}>
         <div className="col col-md-5">
           {reviews.map((item) => (
+            // {item._id.toString()}
             <div
               className="card mb-5 shadow-sm rounded-2 overflow-hidden"
               style={{ maxWidth: "700px" }}
@@ -93,6 +129,21 @@ export default function Page() {
                     <h6 className="fs-5 mb-0" style={{ color: "#e87400" }}>
                       {"★".repeat(item.rating)}
                       {"☆".repeat(5 - item.rating)}
+                    </h6>
+                  </div>
+                </div>
+
+                <div className="card border-0 px-3 w-100 text-end">
+                  <div className="px-0">
+                    <Image
+                      className="rounded-2"
+                      src="/file.svg"
+                      width={50}
+                      height={50}
+                      alt="Picture of the collection"
+                    />
+                    <h6 className="card-title fs-8 align-items-center mb-0">
+                      {usernames[5]}
                     </h6>
                   </div>
                 </div>

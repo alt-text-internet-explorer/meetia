@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 export default function Page() {
   // fetch reviews
   const [reviews, setReviews] = useState([])
+  const [commentText, setCommentText] = useState("")
 
   useEffect(() => {
     async function loadReviews() {
@@ -25,26 +26,32 @@ export default function Page() {
     loadReviews()
   }, [])
 
-  useEffect(() => {
-    const comm = "FAKE COMMENT!"
-    async function postComment() {
-      try {
-        let response = await fetch("/api/postComment", {
-          method: "POST",
-          headers: addAuthHeader(),
-          body: comm
-        })
-        const data = await response.status
-        
-        if (data != 200){
-            console.error("Error from postComment function:", error)
-        }
-      } catch (error) {
-        // Handle error
-        console.error("Error posting comment:", error)
-      }
+  async function postComment(reviewId) {
+    try {
+      const response = await fetch("/api/postComment", {
+        method: "POST",
+        headers: addAuthHeader(),
+        body: JSON.stringify({
+          comment: commentText,
+          rev_id: reviewId,
+        }),
+      })
+      const data = await response.json()
+      setReviews((prevReviews) =>
+        prevReviews.map((review) =>
+          review._id === reviewId
+            ? {
+                ...review,
+                comments: [...(review.comments || []), data.comment],
+              }
+            : review,
+        ),
+      )
+      setCommentText("")
+    } catch (error) {
+      console.error("Error posting comment:", error)
     }
-  }, [])
+  }
 
   const colorType = {
     article: "bg-warning-subtle",
@@ -131,6 +138,14 @@ export default function Page() {
               </div>
 
               <div className="card-footer">
+                <div className="mb-3">
+                  {item.comments?.map((comment, index) => (
+                    <div key={index} className="border rounded p-2 mb-2">
+                      {comment}
+                    </div>
+                  ))}
+                </div>
+
                 <div className="input-group">
                   <Image
                     className="m-2 rounded-2"
@@ -144,13 +159,16 @@ export default function Page() {
                     type="text"
                     className="form-control"
                     placeholder="Write a comment..."
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
                   ></input>
 
-                  <div className="input-group-append px-2">
-                    <a href="#" className="btn btn-primary">
-                      Post
-                    </a>
-                  </div>
+                  <button
+                    className={styles.button}
+                    onClick={() => postComment(item._id)}
+                  >
+                    Post
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,6 +1,10 @@
+import { NextResponse } from "next/server"
+import { authenticateUser } from "@/database/auth"
+import { connectDB } from "@/database/db"
+import { writeComment } from "@/database/dbServices"
+
 export async function POST(req, res) {
-  const comment = req.comment
-  const rev_id = req.rev_id
+  const { comment, rev_id } = await req.json()
 
   const user = authenticateUser(req)
 
@@ -9,8 +13,8 @@ export async function POST(req, res) {
   }
 
   await connectDB()
-
+  const newComment = `${user.displayName}: ${comment}`
   await writeComment(user.displayName, comment, rev_id)
 
-  return NextResponse.json({ status: 200 })
+  return NextResponse.json({ status: 200, comment: newComment })
 }

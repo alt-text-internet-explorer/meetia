@@ -105,9 +105,10 @@ export async function getAllCollectionsFromOwner(oid) {
 // Comment functions
 export async function writeComment(displayName, comment, rev_id) {
   let new_comment = displayName + ": " + comment
-  return Review.updateOne({ _id: rev_id }, { $push: new_comment })
+  return Review.updateOne({ _id: rev_id }, { $push: { comments: new_comment } })
 }
 
 export async function getCommentsOnReview(rev_id) {
-  return Review.find({ _id: rev_id }).comments
+  const review = await Review.findById(rev_id)
+  return review?.comments || []
 }

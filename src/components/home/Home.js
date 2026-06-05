@@ -78,27 +78,27 @@ export default function Page() {
                   className={`container-fluid p-1 mb-1 bg-primary text-white text-center ${colorType[item.type.toLowerCase()]}`}
                 ></div>
 
-              <div className="card-header mb-2 d-flex justify-content-between align-items-center">
-                <span>{item.type}</span>
-                <span>
-                  @{item.display_name ? item.display_name : item.username}
-                </span>
-              </div>
+                <div className="card-header mb-2 d-flex justify-content-between align-items-center">
+                  <span>{item.type}</span>
+                  <span>
+                    @{item.display_name ? item.display_name : item.username}
+                  </span>
+                </div>
 
-              <div className="card-group">
-                <div className="card border-0 w-100">
-                  <div className="d-flex flex-column px-3 align-items-start mb-0">
-                    <h4 className="card-title">{item.title}</h4>
-                    <h6 className="card-subtitle text-muted">
-                      by {item.author}
-                    </h6>
-                    <h6 className="fs-5 mb-0" style={{ color: "#e87400" }}>
-                      {"★".repeat(item.rating)}
-                      {"☆".repeat(5 - item.rating)}
-                    </h6>
+                <div className="card-group">
+                  <div className="card border-0 w-100">
+                    <div className="d-flex flex-column px-3 align-items-start mb-0">
+                      <h4 className="card-title">{item.title}</h4>
+                      <h6 className="card-subtitle text-muted">
+                        by {item.author}
+                      </h6>
+                      <h6 className="fs-5 mb-0" style={{ color: "#e87400" }}>
+                        {"★".repeat(item.rating)}
+                        {"☆".repeat(5 - item.rating)}
+                      </h6>
+                    </div>
                   </div>
                 </div>
-              </div>
               </Link>
               <hr></hr>
 

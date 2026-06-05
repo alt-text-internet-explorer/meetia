@@ -2,7 +2,6 @@ import { createReview } from "@/database/dbServices"
 import { NextResponse, NextRequest } from "next/server"
 import { connectDB } from "@/database/db"
 import { authenticateUser } from "@/database/auth"
-import Collection from "@/database/models/Collection"
 
 export async function POST(req, res) {
   const user = authenticateUser(req)

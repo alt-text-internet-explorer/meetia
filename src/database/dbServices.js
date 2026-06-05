@@ -15,14 +15,20 @@ export async function getUserByUsername(uname) {
   })
 }
 
+export async function getUsernameByID(id) {
+  return User.findOne({
+    _id: id,
+  }).username
+}
+
 export async function deleteUserByUsername(uname) {
   return User.deleteOne({
     username: uname,
   })
 }
 
-export async function updateUserByUsername(uname, param, updateTo) {
-  return User.updateOne({ username: uname }, { [param]: updateTo })
+export async function updateUserById(id, param, updateTo) {
+  return User.updateOne({ _id: id }, { [param]: updateTo })
 }
 
 //Social functions
@@ -64,9 +70,9 @@ export async function getAllReviews() {
 }
 
 export async function getReviewsFromUID(id) {
-    return Review.find({
-        owner_id: id,
-    })
+  return Review.find({
+    owner_id: id,
+  })
 }
 
 //Collection functions
@@ -94,4 +100,15 @@ export async function addReviewToCollection(id, new_rev) {
 
 export async function getAllCollectionsFromOwner(oid) {
   return Collection.find({ owner_id: oid })
+}
+
+// Comment functions
+export async function writeComment(displayName, comment, rev_id) {
+  let new_comment = displayName + ": " + comment
+  return Review.updateOne({ _id: rev_id }, { $push: { comments: new_comment } })
+}
+
+export async function getCommentsOnReview(rev_id) {
+  const review = await Review.findById(rev_id)
+  return review?.comments || []
 }

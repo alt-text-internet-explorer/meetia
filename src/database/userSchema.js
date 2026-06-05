@@ -8,9 +8,18 @@ const UserSchema = new Schema({
     trim: true,
   },
 
+  displayName: {
+    type: String,
+    trim: true,
+  },
+
   password: {
     type: String,
     required: true,
+  },
+
+  bio: {
+    type: String,
   },
 
   role: {

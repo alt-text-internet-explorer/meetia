@@ -1,6 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
+import logoImg from "./Meetia.png"
 import styles from "./Navbar.module.css"
 import { useState } from "react"
 import { useAuth } from "@/utils/authContext"
@@ -8,12 +10,19 @@ import LogoutButton from "./logout/LogoutButton"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { loggedIn } = useAuth()
+  const { loggedIn, user } = useAuth()
 
   return (
     <nav className={styles.nav} data-cy="nav">
       {/* Website Name, fixed position */}
-      <div className={styles.logo}>Meetia</div>
+      <div>
+        <Image
+          src={logoImg}
+          alt="Meetia logo"
+          height={60}
+          style={{ width: "auto" }}
+        />
+      </div>
 
       {/* Toggle Menu Button for Mobile View */}
       <button onClick={() => setIsOpen(!isOpen)} className={styles.menu}>
@@ -27,7 +36,9 @@ export default function Navbar() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/profile">User Profile</Link>
+            <Link href={loggedIn ? `/profile/${user?.username}` : "/login"}>
+              User Profile
+            </Link>
           </li>
           <li>
             <Link href="/new-review">New Review</Link>

@@ -1,3 +1,7 @@
+.background {
+  background: rgb(169, 166, 154);
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -28,12 +32,13 @@
 .collections {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .collections li {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   list-style: none;
   gap: 32px;
   margin: 12px;
@@ -71,4 +76,17 @@
   flex-direction: row;
   align-items: flex-end;
   gap: 20px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 45px;
+  background-color: #426589;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  z-index: 999;
 }

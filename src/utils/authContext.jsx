@@ -1,7 +1,8 @@
 "use client"
 
-import { createContext, useContext, useSyncExternalStore } from "react"
+import { createContext, useContext, useMemo, useSyncExternalStore } from "react"
 import { useRouter } from "next/navigation"
+import { jwtDecode } from "jwt-decode"
 
 const AuthContext = createContext(null)
 
@@ -16,20 +17,31 @@ function subscribe(callback) {
 }
 
 function getSnapshot() {
-  return Boolean(localStorage.getItem("token"))
+  return localStorage.getItem("token")
 }
 
 function getServerSnapshot() {
-  return false
+  return null
+}
+
+function decodeUser(token) {
+  if (!token) return null
+  try {
+    return jwtDecode(token)
+  } catch {
+    return null
+  }
 }
 
 export function AuthProvider({ children }) {
   const router = useRouter()
-  const loggedIn = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  )
+  const token = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  const loggedIn = Boolean(token)
+
+  //useMemo caches the token decoding into user
+  const user = useMemo(() => {
+    return decodeUser(token)
+  }, [token])
 
   function login(token, redirectPath = "/") {
     localStorage.setItem("token", token)
@@ -44,7 +56,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, logout }}>
+    <AuthContext.Provider value={{ token, loggedIn, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

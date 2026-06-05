@@ -6,6 +6,17 @@ const ReviewSchema = new Schema({
     ref: "User",
   },
 
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  display_name: {
+    type: String,
+    trim: true,
+  },
+
   title: {
     type: String,
     required: true,
@@ -32,6 +43,10 @@ const ReviewSchema = new Schema({
 
   review_text: {
     type: String,
+  },
+
+  comments: {
+    type: [String],
   },
 })
 

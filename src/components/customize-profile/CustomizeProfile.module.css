@@ -1,0 +1,63 @@
+.form {
+  font-family: Playfair_Display;
+  display: flex;
+  font-size: larger;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.inputTitle {
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.inputBody {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.formcont {
+  background-color: #97b3ae;
+  padding: 20px;
+  width: 1000px;
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 50px;
+  background-color: #426589;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.deleteButton {
+  font-size: small;
+  width: 100px;
+  height: 40px;
+  background-color: #426589;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.inputGroup {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 15px;
+}

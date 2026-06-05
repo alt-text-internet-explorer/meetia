@@ -4,6 +4,14 @@ import styles from "@/components/home/Home.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
 import { useEffect, useState } from "react"
 
+function handleAddFriend(friendusername) {
+  let response = fetch("/api/addfriend", {
+    method: "POST",
+    headers: addAuthHeader(),
+    body: JSON.stringify({ friendusername }),
+  })
+  alert(friendusername)
+}
 
 export default function Page() {
   // fetch reviews
@@ -35,15 +43,6 @@ export default function Page() {
     tv_show: "bg-secondary-subtle",
   }
 
-  function handleAddFriend(friendid){
-    let response = fetch("/api/addfriend", {
-      method: "POST",
-      headers: addAuthHeader(),
-      body: JSON.stringify({friendid}),
-    })
-  }
-
-
   return (
     <main>
       <div className={styles.collections}>
@@ -63,11 +62,13 @@ export default function Page() {
                 <span>@{item.username}</span>
               </div>
 
-              <button 
-              href="#" 
-              style={{maxWidth: "150px"}}
-              className="btn btn-primary"
-              onClick={handleAddFriend(item._id)}>Add Friend!!</button>
+              <button
+                style={{ maxWidth: "150px" }}
+                className="btn btn-primary"
+                onClick={() => handleAddFriend(item.username)}
+              >
+                Add Friend!!
+              </button>
 
               <div className="card-group">
                 <div className="card border-0 w-100">

@@ -13,8 +13,8 @@ export async function POST(req, res) {
   }
 
   await connectDB()
-  const newComment = `${user.displayName}: ${comment}`
-  await writeComment(user.displayName, comment, rev_id)
+  const newComment = `${user.username}: ${comment}`
+  await writeComment(user.username, comment, rev_id)
 
   return NextResponse.json({ status: 200, comment: newComment })
 }

@@ -17,11 +17,11 @@ function subscribe(callback) {
 }
 
 function getSnapshot() {
-  return Boolean(localStorage.getItem("token"))
+  return localStorage.getItem("token")
 }
 
 function getServerSnapshot() {
-  return false
+  return null
 }
 
 function decodeUser(token) {

@@ -10,7 +10,7 @@ import LogoutButton from "./logout/LogoutButton"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { loggedIn } = useAuth()
+  const { loggedIn, user } = useAuth()
 
   return (
     <nav className={styles.nav} data-cy="nav">
@@ -36,7 +36,9 @@ export default function Navbar() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/profile">User Profile</Link>
+            <Link href={loggedIn ? `/profile/${user?.username}` : "/login"}>
+              User Profile
+            </Link>
           </li>
           <li>
             <Link href="/new-review">New Review</Link>

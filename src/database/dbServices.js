@@ -28,7 +28,7 @@ export async function deleteUserByUsername(uname) {
 }
 
 export async function updateUserById(id, param, updateTo) {
-  return User.updateOne({ _id: id }, { [param]: updateTo })
+  return User.updateOne({ _id: id }, { $set: { [param]: updateTo } })
 }
 
 //Social functions

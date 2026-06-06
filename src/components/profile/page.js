@@ -92,7 +92,7 @@ export default async function Page({ params }) {
                     style={{ maxWidth: "500px", maxHeight: "200px" }}
                   >
                     <div
-                      className={`container-fluid p-1 bg-primary text-white text-center ${colorType[item.genre.toLowerCase()]}`}
+                      className={`container-fluid p-1 bg-primary-subtle text-white text-center ${colorType[item.genre.toLowerCase()]}`}
                     ></div>
 
                     <div className="card-group h-100">

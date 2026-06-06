@@ -5,11 +5,13 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import styles from "./CustomizeProfile.module.css"
 import { addAuthHeader } from "@/utils/authFetch"
+import { useAuth } from "@/utils/authContext"
 
 function Customize(props) {
   const formRef = useRef(null)
   const [preview, setPreview] = useState(null)
   const fileInput = useRef(null)
+  const { loggedIn, user } = useAuth()
 
   // displays image after it's been uploaded
   const handleImage = (event) => {
@@ -116,7 +118,11 @@ function Customize(props) {
               required
             />
           </div>
-          <Link type="button" href="/profile" className={styles.button}>
+          <Link
+            type="button"
+            className={styles.button}
+            href={loggedIn ? `/profile/${user?.username}` : "/login"}
+          >
             Save Changes
           </Link>
         </ul>

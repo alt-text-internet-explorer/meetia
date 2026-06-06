@@ -13,11 +13,7 @@ export default async function Page({ params }) {
   await connectDB()
   const user = await getUserByUsername(username)
 
-  let displayName = user.displayName
-
-  if (displayName == undefined){
-    displayName = user.username
-  }
+  let disp = user.displayName
 
   let bio = user.bio
 
@@ -69,7 +65,7 @@ export default async function Page({ params }) {
             </div>
 
             <div className="overflow-y-auto h-100">
-              <h5>{displayName}</h5>
+              <h5>{disp}</h5>
               <p
                 className="card-text text-secondary"
                 style={{ fontSize: "0.8rem" }}

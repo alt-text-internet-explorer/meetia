@@ -1,4 +1,4 @@
-import { createReview, updateUserById } from "@/database/dbServices"
+import { createReview, updateUserByUsername } from "@/database/dbServices"
 import { NextResponse, NextRequest } from "next/server"
 import { connectDB } from "@/database/db"
 import { authenticateUser } from "@/database/auth"
@@ -12,6 +12,8 @@ export async function POST(req, res) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
+  console.log(user.id)
+
   //const profilePicture = FormData.get("image-upload")
   const displayName = FormData.get("display-name")
   //const interests = FormData.get("my-interests")
@@ -19,8 +21,10 @@ export async function POST(req, res) {
 
   await connectDB()
 
-  await updateUserById(user._id, "displayName", displayName)
-  await updateUserById(user._id, "bio", about)
+  await updateUserByUsername(user.username, "displayName", displayName)
+  await updateUserByUsername(user.username, "bio", about)
+
+  console.log("updated!")
 
   return NextResponse.json({ status: 200 })
 }

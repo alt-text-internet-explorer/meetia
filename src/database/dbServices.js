@@ -31,6 +31,10 @@ export async function updateUserById(id, param, updateTo) {
   return User.updateOne({ _id: id }, { $set: { [param]: updateTo } })
 }
 
+export async function updateUserByUsername(username, param, updateTo) {
+  return User.updateOne({ username: username }, { $set: { [param]: updateTo } })
+}
+
 //Social functions
 export async function addFriend(uname, friend_id) {
   User.updateOne({ username: uname }, { $push: { friends: friend_id } })

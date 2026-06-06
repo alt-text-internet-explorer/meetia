@@ -56,7 +56,8 @@ function Customize(props) {
         console.error("Error posting customization:", error)
       }
     }
-    customize()
+    console.log("CALL TO CUSTOMIZE")
+    await customize()
 
     //Clear all inputs
     formRef.current.reset()
@@ -118,13 +119,12 @@ function Customize(props) {
               required
             />
           </div>
-          <Link
-            type="button"
+          <button
+            type="submit"
             className={styles.button}
-            href={loggedIn ? `/profile/${user?.username}` : "/login"}
           >
             Save Changes
-          </Link>
+          </button>
         </ul>
       </div>
     </form>

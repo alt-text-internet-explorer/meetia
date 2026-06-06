@@ -60,7 +60,7 @@ export default function Page() {
     movie: "bg-danger-subtle",
     music: "bg-info-subtle",
     podcast: "bg-primary-subtle",
-    "tv show": "bg-secondary-subtle",
+    "tv show": "bg-success",
   }
 
   return (

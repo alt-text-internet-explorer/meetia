@@ -1,6 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "@/components/profile/UserProfile.module.css"
+import { Style, Avatar } from "@dicebear/core"
+import definition from "@dicebear/styles/fun-emoji.json" with { type: "json" }
+
 import {
   getAllCollectionsFromOwner,
   getUserByUsername,
@@ -9,6 +12,12 @@ import { connectDB } from "@/database/db"
 
 export default async function Page({ params }) {
   const { username } = await params
+  const style = new Style(definition)
+  const avatar = new Avatar(style, {
+    seed: username,
+  })
+
+  const svg = avatar.toString()
 
   await connectDB()
   const user = await getUserByUsername(username)
@@ -53,16 +62,11 @@ export default async function Page({ params }) {
           style={{ height: "200px" }}
         >
           <div className="d-flex flex-row h-100 align-items-center">
-            <div className="flex-shrink-0 me-3">
-              <Image
-                className="rounded-circle"
-                src={user.profileImage || "/file.svg"}
-                width={200}
-                height={200}
-                alt="Picture of the collection"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <div
+              className="flex-shrink-0 me-3"
+              style={{ width: "150px", height: "150px" }}
+              dangerouslySetInnerHTML={{ __html: svg }}
+            />
 
             <div className="overflow-y-auto h-100">
               <h5>{disp}</h5>
